@@ -20,4 +20,4 @@ This is our team work. We created an analogue of FastQC program. It will work co
 9. create a common repository
 10. checkout for PEP8 in github actions
 
-Data were taken from https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541]
+Data were taken from https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541
