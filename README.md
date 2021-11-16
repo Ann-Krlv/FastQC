@@ -21,3 +21,10 @@ This is our team work. We created an analogue of FastQC program. It will work co
 10. checkout for PEP8 in github actions
 
 Data were taken from https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541
+
+### Usage
+0. General notes: now you can get the number of reads and ugly plot only
+1. To run program type `python main.py` (or use your python3 interpreter) in project directory
+2. When program ask you, print fastq file name (or path, but probably it doesn't work :))
+3. Program will count the number of reads, create Per_base_quality.png file with plot and exit
+4. Enjoy :)
