@@ -4,7 +4,7 @@ This is our team work. We created an analogue of FastQC program. It will work co
 ## Сontribution of each project participant:
 
 * Anna Koroleva,https://github.com/Ann-Krlv (...)
-*  Valeria Ladygina, (...)
+*  Valeria Ladygina, https://github.com/ValeriiaLadyhina (...)
 *  Leonid Zhozhikov, (...)
 *  Oxana Kolpakova, https://github.com/OxanaKolpakova (...)
 
