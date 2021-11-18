@@ -1,6 +1,8 @@
 # global variables
 base_qsc = []  # base quality scores, perhaps it is better to use pandas dataframe
 read_qsc = []  # read quality scores, perhaps it is better to use pandas
+gc_content = []  # read GC composition
+
 
 
 def quality_per_read(quality, n):
@@ -17,8 +19,11 @@ def quality_per_base(quality, n):
             base_qsc.append([ord(quality[i]) - 33])
 
 
-def gc_counter():
-    pass
+def gc_counter(sequence,n):
+    gc_content.append(((sequence.count('G')+sequence.count('C'))/n)*100)
+
+
+
 
 
 def quality_per_score():
