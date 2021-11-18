@@ -55,7 +55,7 @@ def per_base_sequence_quality():
                 else:
                     xlabels.append(str(i + 1) + ' - ' + str(i + 5))
                 count -= 1
-            elif 0 < count and count < 4:
+            elif 0 < count < 4:
                 count -= 1
             elif count == 0:
                 count = 4
