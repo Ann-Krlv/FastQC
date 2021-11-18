@@ -61,6 +61,7 @@ def per_base_sequence_quality():
                 count = 4
     plt.xticks(xticks, xlabels, fontsize=5)
     plt.yticks(fontsize=5)
+    plt.xlabel('Position in read (bp)', fontsize=5)
     plt.title('Per base sequence quality', fontweight='bold', color='darkred', loc='left')
     plt.suptitle('\n\n\n\n\n\n\nQuality scores across all bases (Sanger / Illumina 1.9 encoding)', size = 4)
     plot1.figure.savefig("Per_base_quality.png", figsize=(30, 10), dpi=200)
