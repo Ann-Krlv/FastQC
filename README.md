@@ -10,7 +10,7 @@ This is our team work. We created an analogue of FastQC program. It will work co
 
 ## Brief description of the project:
 1. recognition fastQ format, read file
-2. transforme the quality simbols into numbers by position according to the ASCII table
+2. transforme the quality symbols into numbers by position according to the ASCII table
 3. make graphs and tables according to ASCII quality data
 4. basic statistics (length, GC, duplicates, overrepresented ....)
 5. parsing command line arguments
