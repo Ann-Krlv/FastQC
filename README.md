@@ -25,7 +25,7 @@ You can do a test run on the data presented as a *example.fastq*.  The data was 
 https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541
 
 To see example of output you can type:
-![FastQC] (https://github.com/QCTerror/FastQC/main/.ipynb_checkpoints/Per_base_quality.png)
+![Per_base_quality](https://user-images.githubusercontent.com/71066938/142629950-218feffc-acd1-452e-ac2b-f4b274bb44af.png)
 
 
 You can see the example of  created report *example.report* via
