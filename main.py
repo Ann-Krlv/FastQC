@@ -12,7 +12,8 @@ def reader(fastq):
             n = len(seq)
             counter += 1
             stats.quality_per_base(qual, n)
-            stats.gc_counter(seq,n)
+            stats.gc_counter(seq, n)
+            stats.duplicate_counter(seq, n, counter)
             # put other functions from stat.py here
             # they need to work with single read
             # vars: title (use for 'per tile quality'), seq (nucleotides), qual (phred33 quality)
@@ -30,3 +31,4 @@ if __name__ == '__main__':
     reader(fastq_file)  # now it works with single file only from the same directory
     report_maker()
     print('There are', counter, 'reads in the file')
+    print(stats.over_seq)

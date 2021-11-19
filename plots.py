@@ -3,8 +3,9 @@ import matplotlib.pyplot as plt
 import stats
 import pandas as pd
 
-def basic_statistics():
 
+def basic_statistics():
+    pass
 '''
 def per_base_sequence_quality():
     plot1 = sns.boxplot(data=stats.base_qsc,
@@ -71,4 +72,3 @@ def per_base_sequence_quality():
 def per_sequence_GC_content():
     gc_content = pd.DataFrame(stats.gc_content, columns=['GC content'])
     gc_content.plot(kind='density')
-
