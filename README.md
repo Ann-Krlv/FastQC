@@ -40,7 +40,34 @@ You can see the example of  created report *example.report* via
 *  Oxana Kolpakova, https://github.com/OxanaKolpakova (...)
 
 ## Things that needed to be done:
-
+* Basic statistics
+  * create table in plots. - I didn't find yet way gow to ceate colored table in python
+  * write function in stats. that would count how many reads did not path quality threshold (use from Fast filtrator)
+  * add to main.py input to change default value for index for quality filter
+* Per base sequence quality - __DONE A V__
+* Per tile sequence quality 
+* Per sequence quality scores 
+  * Create plot on plots
+* Per base sequence content
+  * in stats create function
+  * in plots create plot
+* Per sequence GC content
+  * create plot in plots - __V__
+* Per base N content - *__maybe we can skip it?__*
+* Sequnce length distribution:
+  * in start create counting
+  * in plots build plot
+*Sequence duplication levels
+  * function in stats 
+  * plot
+* Overrepresented sequences - __A__
+  * plot
+  * function in stats
+*Adapter content *__to be skipped maybe?__*
+* Combine everything into report
+* Check and clean and add in README.md
+* flake8 __DONE V__
+* __Leonid__ don't forget to add your github page
 1. recognition fastQ format, read file
 2. transforme the quality symbols into numbers by position according to the ASCII table
 3. make graphs and tables according to ASCII quality data
