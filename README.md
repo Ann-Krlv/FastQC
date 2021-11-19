@@ -1,5 +1,6 @@
-# QC-TError - FastQC program analogue
-> Python tools for basic statistics on quality of raw Illumina reads
+![QC-Terror](https://user-images.githubusercontent.com/71066938/142631745-ce531407-851a-4746-a721-c23283e96f2a.png)
+# *QC-TError* - FastQC program analogue
+> Python tool for basic statistics on quality of raw Illumina reads
 
 ## Introduction
 *__QC-TError__* is a tool that you can use to get basic statistics on your raw Illumina reads. With help of it you can obtain
@@ -26,18 +27,20 @@ https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541
 
 To see example of output you can type:
 ![Per_base_quality](https://user-images.githubusercontent.com/71066938/142629950-218feffc-acd1-452e-ac2b-f4b274bb44af.png)
-
+# __! On this webpage you can find how to add images on github__ https://reactgo.com/github-add-images-readme/
 
 You can see the example of  created report *example.report* via
 
+
 ## Сontribution of each project participant:
 
-* Anna Koroleva,https://github.com/Ann-Krlv (...)
+*  Anna Koroleva,https://github.com/Ann-Krlv (...)
 *  Valeria Ladygina, https://github.com/ValeriiaLadyhina (...)
 *  Leonid Zhozhikov, (...)
 *  Oxana Kolpakova, https://github.com/OxanaKolpakova (...)
 
-## Brief description of the project:
+## Things that needed to be done:
+
 1. recognition fastQ format, read file
 2. transforme the quality symbols into numbers by position according to the ASCII table
 3. make graphs and tables according to ASCII quality data
@@ -57,3 +60,16 @@ Data were taken from https://figshare.com/articles/dataset/amp_res_2_fastq_zip/1
 2. When program ask you, print fastq file name (or path, but probably it doesn't work :))
 3. Program will count the number of reads, create Per_base_quality.png file with plot and exit
 4. Enjoy :)
+
+
+## Authors and acknowledgements:
+* Anna Koroleva,https://github.com/Ann-Krlv 
+* Valeria Ladygina, https://github.com/ValeriiaLadyhina 
+* Leonid Zhozhikov, 
+* Oxana Kolpakova, https://github.com/OxanaKolpakova 
+
+## Feedback
+ If you have any questions, bug reports or complains please approach the authors of FastQ Filtrator via email:
+
+ *__valeriia.ladyhina@gmail.com__* - responsible for...
+ 
