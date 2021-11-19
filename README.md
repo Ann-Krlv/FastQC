@@ -4,13 +4,13 @@ This is our team work. We created an analogue of FastQC program. It will work co
 ## Сontribution of each project participant:
 
 * Anna Koroleva,https://github.com/Ann-Krlv (...)
-*  Valeria Ladygina, (...)
+*  Valeria Ladygina, https://github.com/ValeriiaLadyhina (...)
 *  Leonid Zhozhikov, (...)
 *  Oxana Kolpakova, https://github.com/OxanaKolpakova (...)
 
 ## Brief description of the project:
 1. recognition fastQ format, read file
-2. transforme the quality simbols into numbers by position according to the ASCII table
+2. transforme the quality symbols into numbers by position according to the ASCII table
 3. make graphs and tables according to ASCII quality data
 4. basic statistics (length, GC, duplicates, overrepresented ....)
 5. parsing command line arguments
