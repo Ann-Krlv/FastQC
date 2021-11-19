@@ -1,6 +1,7 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
 import stats
+import pandas as pd
 
 def basic_statistics():
 
@@ -65,3 +66,9 @@ def per_base_sequence_quality():
     plt.title('Per base sequence quality', fontweight='bold', color='darkred', loc='left')
     plt.suptitle('\n\n\n\n\n\n\nQuality scores across all bases (Sanger / Illumina 1.9 encoding)', size = 4)
     plot1.figure.savefig("Per_base_quality.png", figsize=(30, 10), dpi=200)
+
+
+def per_sequence_GC_content():
+    gc_content = pd.DataFrame(stats.gc_content, columns=['GC content'])
+    gc_content.plot(kind='density')
+

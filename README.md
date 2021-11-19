@@ -1,5 +1,34 @@
-# The FastQC program analogue
-This is our team work. We created an analogue of FastQC program. It will work correctly.
+# QC-TError - FastQC program analogue
+> Python tools for basic statistics on quality of raw Illumina reads
+
+## Introduction
+*__QC-TError__* is a tool that you can use to get basic statistics on your raw Illumina reads. With help of it you can obtain
+information regarding:
+* basic statistics
+  * length of reads presented in the data
+  * total number of reads
+  * average content of GC in sequence
+  * number of reads that have poor quality
+* visualtisation of:
+  * average per base quality of reads
+  * sequence quality per tile
+  * distribution of average read quality score
+  * per base sequence content
+  * per sequence GC content
+ 
+## Start
+To start working with QC-Terror tools please download our package to your computer. To run QC-TError tool please type 
+`python main.py` (or use your python3 interpreter) in project directory. 
+
+## Example
+You can do a test run on the data presented as a *example.fastq*.  The data was taken from from 
+https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541
+
+To see example of output you can type:
+![FastQC] (https://github.com/QCTerror/FastQC/blob/main/Per_base_quality.png)
+
+
+You can see the example of  created report *example.report* via
 
 ## Сontribution of each project participant:
 

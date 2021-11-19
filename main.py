@@ -21,6 +21,7 @@ def reader(fastq):
 
 def report_maker():
     plots.per_base_sequence_quality()
+    plots.per_sequence_GC_content()
     # add other functions from plots.py here (which create plots, tables for pdf, etc)
 
 
