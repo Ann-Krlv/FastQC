@@ -2,24 +2,11 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import stats
 import pandas as pd
+pd.options.mode.chained_assignment = None  # default='warn'
 
 
 def basic_statistics():
     pass
-'''
-def per_base_sequence_quality():
-    plot1 = sns.boxplot(data=stats.base_qsc,
-                        saturation=1,
-                        showfliers=False,
-                        color='yellow',
-                        medianprops=dict(color="red"),
-                        boxprops=dict(edgecolor='black'),
-                        linewidth=0.2,
-                        whis=(10, 90))
-    mean_var = [sum(i)/len(i) for i in stats.base_qsc]  # list with mean quality per position
-    sns.lineplot(data=mean_var, ax=plot1, legend=False, linewidth=0.3)  # add mean line plot
-    plot1.figure.savefig("Per_base_quality.png", figsize=(30, 10), dpi=200)
-'''
 
 
 def per_base_sequence_quality():
@@ -72,3 +59,14 @@ def per_base_sequence_quality():
 def per_sequence_GC_content():
     gc_content = pd.DataFrame(stats.gc_content, columns=['GC content'])
     gc_content.plot(kind='density')
+    # plt.savefig("Per_sequence_GC_content.png", figsize=(30, 10), dpi=200)
+
+
+def overrepresented_table(cnt):
+    over_df = pd.DataFrame({'Sequence': stats.over_seq.keys(),
+                            'Count': stats.over_seq.values(),
+                            'Percentage': [i*100/cnt for i in stats.over_seq.values()]})
+    res_df = over_df.loc[over_df['Percentage'] > 0.0999999999]
+    res_df.sort_values('Count', ascending=False, inplace=True, ignore_index=True)
+    res_df.set_index('Sequence', inplace=True)
+    res_df.to_csv('overrepresented_sequences.tsv', sep='\t')
