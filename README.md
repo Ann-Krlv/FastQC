@@ -1,4 +1,4 @@
-![QC-Terror](https://user-images.githubusercontent.com/71066938/142631745-ce531407-851a-4746-a721-c23283e96f2a.png)
+![QC-Terror](https://user-images.githubusercontent.com/71066938/142631946-18e9e670-1395-4050-8cf7-1acedd1b8687.png)
 # *QC-TError* - FastQC program analogue
 > Python tool for basic statistics on quality of raw Illumina reads
 
