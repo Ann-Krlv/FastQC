@@ -1,8 +1,12 @@
+import pygtrie
+
 # global variables
 base_qsc = []  # base quality scores, perhaps it is better to use pandas dataframe
 read_qsc = []  # read quality scores, perhaps it is better to use pandas
 gc_content = []  # read GC composition
-
+seq_set = pygtrie.Trie()  # Trie structure for overrepresented and duplicated sequences (for check)
+over_seq = {}  # dict for non-unique sequences
+unique_Overrepr_counter = 0
 
 
 def quality_per_read(quality, n):
@@ -19,11 +23,30 @@ def quality_per_base(quality, n):
             base_qsc.append([ord(quality[i]) - 33])
 
 
-def gc_counter(sequence,n):
+def gc_counter(sequence, n):
     gc_content.append(((sequence.count('G')+sequence.count('C'))/n)*100)
 
 
+def duplicate_counter(sequence, n):
+    """
+    Add sequence (or its part if length > 75) in the dict if it non-unique,
+    i.e. has match with first 100k _unique_ sequences
+    NB: the subsequence search is too long in-built set(), so I use Trie dict-like container
+    """
+    global unique_Overrepr_counter
+    if n > 75:
+        seq = sequence[0:50]
+    else:
+        seq = sequence
 
+    if seq_set.has_subtrie(seq):
+        if seq in over_seq:
+            over_seq[seq] += 1
+        else:
+            over_seq[seq] = 2
+    elif unique_Overrepr_counter <= 100000:
+        seq_set[sequence] = 1
+        unique_Overrepr_counter += 1
 
 
 def quality_per_score():

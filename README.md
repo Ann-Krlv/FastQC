@@ -41,27 +41,27 @@ You can see the example of  created report *example.report* via
 
 ## Things that needed to be done:
 * Basic statistics
-  * create table in plots. - I didn't find yet way gow to ceate colored table in python
+  * create table in plots. - I didn't find yet way gow to create colored table in python *(but we can save tsv tables!)*
   * write function in stats. that would count how many reads did not path quality threshold (use from Fast filtrator)
   * add to main.py input to change default value for index for quality filter
 * Per base sequence quality - __DONE A V__
 * Per tile sequence quality 
 * Per sequence quality scores 
   * Create plot on plots
-* Per base sequence content
+* Per base sequence content __DONE V NEED REVISION__
   * in stats create function
   * in plots create plot
 * Per sequence GC content
-  * create plot in plots - __V__
+  * create plot in plots - __V__ stuck
 * Per base N content - *__maybe we can skip it?__*
-* Sequnce length distribution:
+* Sequence length distribution:
   * in start create counting
   * in plots build plot
-*Sequence duplication levels
-  * function in stats 
+*Sequence duplication levels __STARTED A__
+  * function in stats (use overrepresented stats)
   * plot
-* Overrepresented sequences - __A__
-  * plot
+* Overrepresented sequences - __DONE A__
+  * plot table
   * function in stats
 *Adapter content *__to be skipped maybe?__*
 * Combine everything into report
@@ -84,7 +84,7 @@ Data were taken from https://figshare.com/articles/dataset/amp_res_2_fastq_zip/1
 ### Usage
 0. General notes: now you can get the number of reads and ugly plot only
 1. To run program type `python main.py` (or use your python3 interpreter) in project directory
-2. When program ask you, print fastq file name (or path, but probably it doesn't work :))
+2. When program ask you, print fastq file name (or path to file)
 3. Program will count the number of reads, create Per_base_quality.png file with plot and exit
 4. Enjoy :)
 
