@@ -45,8 +45,8 @@ You can see the example of  created report *example.report* via
   * write function in stats. that would count how many reads did not path quality threshold (use from Fast filtrator)
   * add to main.py input to change default value for index for quality filter
 * Per base sequence quality - __DONE A V__
-* Per tile sequence quality 
-* Per sequence quality scores 
+* Per tile sequence quality __O__
+* Per sequence quality scores __O__
   * Create plot on plots
 * Per base sequence content __DONE V__
   * in stats create function
@@ -54,7 +54,7 @@ You can see the example of  created report *example.report* via
 * Per sequence GC content
   * create plot in plots - __V__ stuck
 * Per base N content - *__maybe we can skip it?__*
-* Sequence length distribution:
+* Sequence length distribution: __V__
   * in start create counting
   * in plots build plot
 *Sequence duplication levels __STARTED A__
