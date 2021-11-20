@@ -25,8 +25,8 @@ def report_maker():
     plots.per_base_sequence_quality()
     plots.per_sequence_GC_content()
     plots.overrepresented_table(counter)
+    plots.dup_plot_maker(counter)
     plots.per_base_sequence_content()
-    #plots.duplicated_reads()
     # add other functions from plots.py here (which create plots, tables for pdf, etc)
 
 
@@ -35,4 +35,3 @@ if __name__ == '__main__':
     reader(fastq_file)  # now it works with single file only from the same directory
     report_maker()
     print('There are', counter, 'reads in the file')
-    print(stats.unique_Overrepr_counter)
