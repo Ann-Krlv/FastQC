@@ -1,8 +1,9 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
-# import numpy as np
+import numpy as np
 import stats
 import pandas as pd
+import numpy as np
 pd.options.mode.chained_assignment = None  # default='warn'
 
 
@@ -135,3 +136,41 @@ def overrepresented_table(cnt):
     res_df.to_csv('overrepresented_sequences.tsv', sep='\t')
 
 
+def per_base_sequence_content():
+    maximum = max(max(stats.base_content_dict['A']),max(stats.base_content_dict['C']),max(stats.base_content_dict['G'])
+                  ,max(stats.base_content_dict['T']))
+    figure = plt.figure()
+    plt.plot(stats.base_content_dict['A'],color='limegreen')
+    plt.plot(stats.base_content_dict['C'],color='blue')
+    plt.plot(stats.base_content_dict['G'],color='black')
+    plt.plot(stats.base_content_dict['T'],color='red')
+    for i in range(0, len(stats.base_content_dict['A']) - 1, 2):
+        plt.fill_between([i, i + 1], [maximum, maximum], color="lightgrey")
+    xticks = []
+    xlabels = []
+    count = 4
+    for i in range(0, len(stats.base_content_dict['A']) - 1):
+        if i + 1 <= 9:
+            j=i+0.5
+            xticks.append(j)
+            xlabels.append(str(i + 1))
+        else:
+            if count == 4:
+                j=i+0.5
+                xticks.append(j + 2)
+                if len(stats.base_content_dict['A']) - i < 5:
+                    xlabels.append(str(i + 1) + ' - ' + str(len(stats.base_content_dict['A'])))
+                else:
+                    xlabels.append(str(i + 1) + ' - ' + str(i + 5))
+                count -= 1
+            elif 0 < count < 4:
+                count -= 1
+            elif count == 0:
+                count = 4
+    plt.xticks(xticks, xlabels, fontsize=5)
+    plt.yticks(np.arange(0,maximum,10),np.arange(0,maximum,10),fontsize=5)
+    plt.xlabel('Position in read (bp)', fontsize=5)
+    plt.legend(('% A','% C','% G','% T'),loc = 'upper right')
+    plt.suptitle('Per base sequence content', fontweight='bold', color='darkred', horizontalalignment='right')
+    plt.title('Sequence content across all bases', size = 4)
+    plt.savefig("Per_base_sequence_content.png", figsize=(30, 10), dpi=200, facecolor = 'white')
