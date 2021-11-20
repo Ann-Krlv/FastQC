@@ -48,11 +48,11 @@ You can see the example of  created report *example.report* via
 * Per tile sequence quality 
 * Per sequence quality scores 
   * Create plot on plots
-* Per base sequence content
+* Per base sequence content __STARTED V__
   * in stats create function
   * in plots create plot
 * Per sequence GC content
-  * create plot in plots - __V__
+  * create plot in plots - __V__ stuck
 * Per base N content - *__maybe we can skip it?__*
 * Sequence length distribution:
   * in start create counting
