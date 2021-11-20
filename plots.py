@@ -62,6 +62,18 @@ def per_sequence_GC_content():
     # plt.savefig("Per_sequence_GC_content.png", figsize=(30, 10), dpi=200)
 
 
+'''
+now it creates pandas.Series with amount of each duplication level value
+you can draw plot from it but it will be differ with original in values (general shape will be same)
+def duplicated_reads():
+    tmp_df = pd.DataFrame({'Sequence': stats.over_seq.keys(),
+                           'count': stats.over_seq.values()})
+
+    dup_df = tmp_df['count'].value_counts()
+    dup_df.to_csv('duplicated_sequences.tsv', sep='\t')
+'''
+
+
 def overrepresented_table(cnt):
     over_df = pd.DataFrame({'Sequence': stats.over_seq.keys(),
                             'Count': stats.over_seq.values(),
@@ -70,3 +82,4 @@ def overrepresented_table(cnt):
     res_df.sort_values('Count', ascending=False, inplace=True, ignore_index=True)
     res_df.set_index('Sequence', inplace=True)
     res_df.to_csv('overrepresented_sequences.tsv', sep='\t')
+
