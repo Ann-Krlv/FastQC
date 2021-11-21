@@ -50,6 +50,7 @@ def amateur_reporter(out):
     plots.dup_plot_maker(counter, out)
     plots.per_base_sequence_content(out)
     plots.reads_length_distribution(out)
+    plots.basic_statistics(file, counter, out)
     # add other functions from plots.py here (which create plots, tables for pdf, etc)
 
 
@@ -66,4 +67,5 @@ if __name__ == '__main__':
     out_dir = args.output  # string means path to output directory
     reader(fastq_file)  # now it works with single file only from the same directory
     amateur_reporter(out_dir)
+
     print('There are', counter, 'reads in the file')

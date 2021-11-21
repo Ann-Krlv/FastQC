@@ -8,12 +8,13 @@ seq_set = pygtrie.Trie()  # Trie structure for overrepresented and duplicated se
 over_seq = {}  # dict for non-unique sequences
 unique_Overrepr_counter = 0
 base_pos = {}  # {position1(int): {'A':,'C':,'G':,'T':}, ...}
-read_length = {}
+read_length = {}  # {length1: number of reads, length2: number of reads, ...}
 
 
 def quality_per_read(quality, n):
     sum_quality = sum([ord(i) - 33 for i in quality])
     read_qsc.append(sum_quality/n)
+
 
 
 def quality_per_base(quality, n):
