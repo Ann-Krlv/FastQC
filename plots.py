@@ -198,8 +198,8 @@ def per_base_sequence_content(out):
     plt.xlabel('Position in read (bp)', fontsize=5)
     plt.legend(('% A', '% C', '% G', '% T'), loc='upper right')
     plt.suptitle('Per base sequence content', fontweight='bold', color='darkred', horizontalalignment='right')
-    plt.title('Sequence content across all bases', size = 4)
-    plt.savefig(os.path.join(*out, 'pictures', 'Per_base_sequence_content.png'), figsize=(30, 10), dpi=200, facecolor = 'white')
+    plt.title('Sequence content across all bases', size=4)
+    plt.savefig(os.path.join(*out, 'pictures', 'Per_base_sequence_content.png'), figsize=(30, 10), dpi=200, facecolor='white')
     plt.close()
 
 
@@ -225,11 +225,11 @@ def reads_length_distribution(out):
     plt.close()
 
 
-def per_sequence_quality_score_print(out):   # plotting 
+def per_sequence_quality_score_print(out):   # plotting
     sns.set_style("darkgrid")
-    qual_ditrib =[stats.mean_qual_score.count(i) for i in stats.mean_qual_score]
+    qual_ditrib = [stats.mean_qual_score.count(i) for i in stats.mean_qual_score]
     print(qual_ditrib)
-    p = sns.lineplot(x =stats.mean_qual_score, y=qual_ditrib, color="red")
+    p = sns.lineplot(x=stats.mean_qual_score, y=qual_ditrib, color="red")
     p.set_title("Quality score distribution over all sequences", fontsize=14)
     p.set_xlabel("Mean Sequence Quality", fontsize=14)
     plt.savefig(os.path.join(*out, 'pictures', "Per_Sequence_Quality_Scores.png"))
