@@ -22,7 +22,7 @@ To start working with QC-Terror tools please download our package to your comput
 `python main.py` (or use your python3 interpreter) in project directory. 
 
 ## Example
-You can do a test run on the data presented as a *example.fastq*.  The data was taken from from 
+You can do a test run on the data presented as a *example.fastq*.  The data was taken from  
 https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541. This data was additionally corrected: it consist out of first 60 reads, some of them are also shorterned for purposes to see difference in the plot regarding reads_length.
 
 To see example of output you can type:
@@ -54,3 +54,4 @@ We also create example short file with 60 reads 'example_data.fastq' based on th
  If you have any questions, bug reports or complains please approach the authors of FastQ Filtrator via email:
 
  *__valeriia.ladyhina@gmail.com__* - responsible for communication with clients
+ 
