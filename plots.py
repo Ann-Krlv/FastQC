@@ -1,6 +1,5 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
-# import numpy as np
 import stats
 import pandas as pd
 import numpy as np
@@ -16,23 +15,23 @@ def per_base_sequence_quality():
     ax = fig.add_subplot(111)
     xticks = []
     xlabels = []
-    count = 4
+    count = 3
     for i in range(0, len(stats.base_qsc) - 1):
         if i + 1 <= 9:
             xticks.append(i)
             xlabels.append(str(i + 1))
         else:
-            if count == 4:
-                xticks.append(i + 2)
-                if len(stats.base_qsc) - i < 5:
+            if count == 3:
+                xticks.append(i + 1.5)
+                if len(stats.base_qsc) - i < 4:
                     xlabels.append(str(i + 1) + ' - ' + str(len(stats.base_qsc)))
                 else:
-                    xlabels.append(str(i + 1) + ' - ' + str(i + 5))
+                    xlabels.append(str(i + 1) + ' - ' + str(i + 4))
                 count -= 1
-            elif 0 < count < 4:
+            elif 0 < count < 3:
                 count -= 1
             elif count == 0:
-                count = 4
+                count = 3
     sns.boxplot(data=stats.base_qsc,
                 saturation=0.75,
                 showfliers=False,
@@ -55,11 +54,10 @@ def per_base_sequence_quality():
 
     ax.set_ylim(0, 40)
     ax.set_xlim(-0.5, xticks[-1])
-    plt.xticks(xticks, xlabels, fontsize=5)
-    plt.yticks(fontsize=5)
-    plt.xlabel('Position in read (bp)', fontsize=5)
-    # make title in the report
-    # plt.title('Per base sequence quality', fontweight='bold', color='darkred', loc='left')
+    plt.xticks(xticks, xlabels, fontsize=17)
+    plt.yticks(fontsize=17)
+    plt.xlabel('Position in read (bp)', fontsize=20)
+    # make title in the report 'Per base sequence quality'
     plt.title('Quality scores across all bases (Sanger / Illumina 1.9 encoding)', size=12)
     fig.savefig("Per_base_quality.png")
 
@@ -140,7 +138,7 @@ def overrepresented_table(cnt):
 
 def per_base_sequence_content():
     maximum = 100
-    figure = plt.figure()
+    plt.figure()
     plt.plot([i['A']*100/sum(i.values()) for i in stats.base_pos.values()],color='limegreen')
     plt.plot([i['C']*100/sum(i.values()) for i in stats.base_pos.values()],color='blue')
     plt.plot([i['G']*100/sum(i.values()) for i in stats.base_pos.values()],color='black')
@@ -164,7 +162,7 @@ def per_base_sequence_content():
                 else:
                     xlabels.append(str(i + 1) + ' - ' + str(i + 5))
                 count -= 1
-            elif 0 < count < 4:
+            elif 0 < count < 3:
                 count -= 1
             elif count == 0:
                 count = 4
@@ -175,3 +173,4 @@ def per_base_sequence_content():
     plt.suptitle('Per base sequence content', fontweight='bold', color='darkred', horizontalalignment='right')
     plt.title('Sequence content across all bases', size = 4)
     plt.savefig("Per_base_sequence_content.png", figsize=(30, 10), dpi=200, facecolor = 'white')
+    plt.close()

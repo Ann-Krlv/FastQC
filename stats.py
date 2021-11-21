@@ -14,6 +14,7 @@ def quality_per_read(quality, n):
     read_qsc.append(sum_quality/n)
 
 
+
 def quality_per_base(quality, n):
     """ make a list of lists = base_qs[position][list of scores] """
     for i in range(n):

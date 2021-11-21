@@ -31,7 +31,7 @@ def report_maker():
 
 
 if __name__ == '__main__':
-    fastq_file = input('Please, input file, \'short.fastq\' for example: ')
+    fastq_file = input('Please, type the nme of input file, \'short.fastq\' for example: \n')
     reader(fastq_file)  # now it works with single file only from the same directory
     report_maker()
     print('There are', counter, 'reads in the file')
