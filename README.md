@@ -42,12 +42,15 @@ We also create example short file with 60 reads 'example_data.fastq' based on th
 
 ## Authors and acknowledgements:
 * Anna Koroleva,https://github.com/Ann-Krlv    
-* Valeria Ladygina, https://github.com/ValeriiaLadyhina 
+  * Main Idea developer, contributed to quality_per_base, gc_counter, duplicate_counter,per_sequence_quality_score_print 
+* Valeria Ladygina, https://github.com/ValeriiaLadyhina
+  * Responsible for README.md, created Logo, contributed to quality_per_base ,gc_counter, base_content
 * Leonid Zhozhikov, https://github.com/LyonyaZhozhikov
+  * responsible for the patr of the tool that creates report
 * Oxana Kolpakova, https://github.com/OxanaKolpakova 
+  * Contributed to per_sequence_quality_score_print, requirements
 
 ## Feedback
  If you have any questions, bug reports or complains please approach the authors of FastQ Filtrator via email:
 
- *__valeriia.ladyhina@gmail.com__* - responsible for
- 
+ *__valeriia.ladyhina@gmail.com__* - responsible for communication with clients
