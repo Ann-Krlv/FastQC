@@ -21,12 +21,23 @@ information regarding:
 You can do a test run on the data presented as a *example.fastq*.  The data was taken from  
 https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541. This data was additionally corrected: it consist out of first 60 reads, some of them are also shorterned for purposes to see difference in the plot regarding reads_length.
 
+## Installation
+* clone this repository into you local
+* it is better to use virtual environment (conda or virtualenv)
+* before first start run `pip install -r requirements.txt` in the terminal (in your virtual environment better)
+* then you can start
+
+* *the correct work had been cheched for Ubuntu 20.4 and Windows 10, but if you can choise, Ubuntu is better*
+* *the script works correct with python 3.8*
+
 ## Usage
-To run program type python main.py -i file.fastq (or use your python3 interpreter) in project directory
-If you want, you can specify output directory: python main.py -i file.fastq -o path/to/dir
-Program will count the number of reads, create folder QCTerror_res and exit
-All pictures and tables into QCTerror_res/pictures/ and QCTerror_res/tables/ folders
-Enjoy :)
+* To run program type python main.py -i file.fastq (or use your python3 interpreter) in project directory
+* If you want, you can specify output directory: python main.py -i file.fastq -o path/to/dir
+* Program will count the number of reads, create folder QCTerror_res and exit
+* All pictures and tables into QCTerror_res/pictures/ and QCTerror_res/tables/ folders
+* The pdf report generation takes some time, so you can take a coffee break or just comment (#) last 
+string in amateur_maker() (in main.py)
+* Enjoy :)
 
 ## Authors and acknowledgements:
 * Anna Koroleva,https://github.com/Ann-Krlv    
