@@ -26,17 +26,17 @@ You can do a test run on the data presented as a *example.fastq*.  The data was 
 https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541. This data was additionally corrected: it consist out of first 60 reads, some of them are also shorterned for purposes to see difference in the plot regarding reads_length.
 
 ### Usage
-
+To start the tool please type  main.py *file_name.fastq
 
 ## Authors and acknowledgements:
 * Anna Koroleva,https://github.com/Ann-Krlv    
-  * Main Idea developer, contributed to quality_per_base, gc_counter, duplicate_counter,per_sequence_quality_score_print 
+  * Contributed to quality_per_base, gc_counter, duplicate_counter,per_sequence_quality_score_print, testing - __IDEA DEVELOPER__
 * Valeria Ladygina, https://github.com/ValeriiaLadyhina
-  * Responsible for README.md, created Logo, contributed to quality_per_base ,gc_counter, base_content, read length
+  * Responsible for README.md, created Logo, contributed to quality_per_base ,gc_counter, base_content, read length, flake 8 - __PLOT BEAUTIMAKER__
 * Leonid Zhozhikov, https://github.com/LyonyaZhozhikov
-  * responsible for the part of the tool that creates report
+  * responsible for the part of the tool that creates report - __GOD of REPORTS__
 * Oxana Kolpakova, https://github.com/OxanaKolpakova 
-  * Contributed to per_sequence_quality_score_print, requirements
+  * Contributed to per_sequence_quality_score_print, requirements, last fixes for flake 8, testing - __SUPER TESTER__
 
 ## Feedback
  If you have any questions, bug reports or complains please approach the authors of FastQ Filtrator via email:
