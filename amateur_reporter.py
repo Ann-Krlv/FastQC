@@ -1,6 +1,5 @@
 from fpdf import FPDF
 import time
-import numpy as np
 import pandas as pd
 from pandas import DataFrame
 
@@ -57,35 +56,34 @@ pdf = PDF()
 pdf.alias_nb_pages()
 
 # 1
-pdf.add_page()
-pdf.set_font("Times", size=12)
-pdf.image("./QCTerror_res/pictures/Per_base_quality.png", w=pdf.epw)
-pdf.cell(0, 10, f"Raw statistic for your fasta file ", 0, 1)
+# pdf.add_page()
+# pdf.set_font("Times", size=12)
+# pdf.image("./QCTerror_res/pictures/Per_base_quality.png", w=pdf.epw)
+# pdf.cell(0, 10, f"Raw statistic for your fasta file ", 0, 1)
 
 # 2
-pdf.add_page()
-pdf.set_font("Times", size=12)
-pdf.image("./QCTerror_res/pictures/duplication_level.png", w=pdf.epw)
-pdf.cell(0, 10, f"Raw statistic for your fasta file ", 0, 1)
+# pdf.add_page()
+# pdf.set_font("Times", size=12)
+# pdf.image("./QCTerror_res/pictures/duplication_level.png", w=pdf.epw)
+# pdf.cell(0, 10, f"Raw statistic for your fasta file ", 0, 1)
 
 # 3
-pdf.add_page()
-pdf.set_font("Times", size=12)
-pdf.image("./QCTerror_res/pictures/Per_base_sequence_content.png", w=pdf.epw)
-pdf.cell(0, 10, f"Raw statistic for your fasta file ", 0, 1)
+# pdf.add_page()
+# pdf.set_font("Times", size=12)
+# pdf.image("./QCTerror_res/pictures/Per_base_sequence_content.png", w=pdf.epw)
+# pdf.cell(0, 10, f"Raw statistic for your fasta file ", 0, 1)
 
 # 4
-pdf.add_page()
-pdf.set_font("Times", size=12)
-pdf.image("./QCTerror_res/pictures/Sequence_length_distribution.png", w=pdf.epw)
-pdf.cell(0, 10, f"Raw statistic for your fasta file ", 0, 1)
-
+# pdf.add_page()
+# pdf.set_font("Times", size=12)
+# pdf.image("./QCTerror_res/pictures/Sequence_length_distribution.png", w=pdf.epw)
+# pdf.cell(0, 10, f"Raw statistic for your fasta file ", 0, 1)
 
 # 0
 pdf.add_page()
 pdf.set_font("Times", size=7)
 line_height = pdf.font_size * 2.5
-col_width = pdf.epw / 4  # distribute content evenly
+col_width = pdf.epw / 2  # distribute content evenly
 for row in result:
     for datum in row:
         pdf.multi_cell(col_width, line_height, datum, border=1, ln=3, max_line_height=pdf.font_size)
