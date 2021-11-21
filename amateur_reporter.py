@@ -1,8 +1,8 @@
-import csv
+# import csv
 from fpdf import FPDF
 import time
-import pandas as pd
-from pandas import DataFrame
+# import pandas as pd
+# from pandas import DataFrame
 import os
 
 timestr_file = time.strftime("%Y-%m-%d__%H-%M-%S")
@@ -17,7 +17,7 @@ timestr = time.strftime("%Y.%m.%d %H:%M:%S")
 # longone = list(records)
 
 # with open(os.path.join('QCTerror_res', 'tables', 'basic_statistics.tsv')) as f:
-    # reader = csv.DictReader(f, delimiter='\t')
+# reader = csv.DictReader(f, delimiter='\t')
 
 # data1 = pd.read_csv(os.path.join('QCTerror_res', 'tables', 'basic_statistics.tsv'), sep="\t")
 # df2 = DataFrame(reader)
@@ -74,9 +74,9 @@ pdf.alias_nb_pages()
 # line_height = pdf.font_size * 2.5
 # col_width = pdf.epw / 4  # distribute content evenly
 # for row in stat:
-     #for datum in row:
-        # pdf.multi_cell(col_width, line_height, datum, border=1, ln=3, max_line_height=pdf.font_size)
-    # pdf.ln(line_height)
+# for datum in row:
+# pdf.multi_cell(col_width, line_height, datum, border=1, ln=3, max_line_height=pdf.font_size)
+# pdf.ln(line_height)
 
 # 2
 pdf.add_page()
@@ -114,9 +114,9 @@ pdf.cell(0, 10, "duplication level", 0, 1)
 # line_height = pdf.font_size * 2.5
 # col_width = pdf.epw / 4  # distribute content evenly
 # for row in longone:
-    # for datum in row:
-        # pdf.cell(line_height, col_width, datum, border=1, ln=3)
-    # pdf.ln(line_height)
+# for datum in row:
+# pdf.cell(line_height, col_width, datum, border=1, ln=3)
+# pdf.ln(line_height)
 
 # *out,pdf.font_size max_line_height=1
 
