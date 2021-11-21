@@ -1,0 +1,7 @@
+seaborn 
+matplotlib
+stats
+pandas 
+numpy 
+Bio
+pygtrie
