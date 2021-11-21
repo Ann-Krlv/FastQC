@@ -16,10 +16,6 @@ information regarding:
   * distribution of average read quality score
   * per base sequence content
   * per sequence GC content
- 
-## Start
-To start working with QC-Terror tools please download our package to your computer. To run QC-TError tool please type 
-`python main.py` (or use your python3 interpreter) in project directory. 
 
 ## Example
 You can do a test run on the data presented as a *example.fastq*.  The data was taken from  
