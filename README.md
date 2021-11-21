@@ -25,28 +25,16 @@ To start working with QC-Terror tools please download our package to your comput
 You can do a test run on the data presented as a *example.fastq*.  The data was taken from  
 https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541. This data was additionally corrected: it consist out of first 60 reads, some of them are also shorterned for purposes to see difference in the plot regarding reads_length.
 
-To see example of output you can type:
-![Per_base_quality](https://user-images.githubusercontent.com/71066938/142629950-218feffc-acd1-452e-ac2b-f4b274bb44af.png)
-
-
-You can see the example of  created report *example.report* via
-
-
-
-Data were taken from https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541
-We also create example short file with 60 reads 'example_data.fastq' based on the library above
-
 ### Usage
-
 
 
 ## Authors and acknowledgements:
 * Anna Koroleva,https://github.com/Ann-Krlv    
   * Main Idea developer, contributed to quality_per_base, gc_counter, duplicate_counter,per_sequence_quality_score_print 
 * Valeria Ladygina, https://github.com/ValeriiaLadyhina
-  * Responsible for README.md, created Logo, contributed to quality_per_base ,gc_counter, base_content
+  * Responsible for README.md, created Logo, contributed to quality_per_base ,gc_counter, base_content, read length
 * Leonid Zhozhikov, https://github.com/LyonyaZhozhikov
-  * responsible for the patr of the tool that creates report
+  * responsible for the part of the tool that creates report
 * Oxana Kolpakova, https://github.com/OxanaKolpakova 
   * Contributed to per_sequence_quality_score_print, requirements
 
