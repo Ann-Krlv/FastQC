@@ -1,9 +1,9 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
-# import numpy as np
 import stats
 import pandas as pd
 import numpy as np
+import os
 pd.options.mode.chained_assignment = None  # default='warn'
 
 
@@ -16,23 +16,23 @@ def per_base_sequence_quality(out):
     ax = fig.add_subplot(111)
     xticks = []
     xlabels = []
-    count = 4
+    count = 3
     for i in range(0, len(stats.base_qsc) - 1):
         if i + 1 <= 9:
             xticks.append(i)
             xlabels.append(str(i + 1))
         else:
-            if count == 4:
-                xticks.append(i + 2)
-                if len(stats.base_qsc) - i < 5:
+            if count == 3:
+                xticks.append(i + 1.5)
+                if len(stats.base_qsc) - i < 4:
                     xlabels.append(str(i + 1) + ' - ' + str(len(stats.base_qsc)))
                 else:
-                    xlabels.append(str(i + 1) + ' - ' + str(i + 5))
+                    xlabels.append(str(i + 1) + ' - ' + str(i + 4))
                 count -= 1
-            elif 0 < count < 4:
+            elif 0 < count < 3:
                 count -= 1
             elif count == 0:
-                count = 4
+                count = 3
     sns.boxplot(data=stats.base_qsc,
                 saturation=0.75,
                 showfliers=False,
@@ -55,13 +55,12 @@ def per_base_sequence_quality(out):
 
     ax.set_ylim(0, 40)
     ax.set_xlim(-0.5, xticks[-1])
-    plt.xticks(xticks, xlabels, fontsize=5)
-    plt.yticks(fontsize=5)
-    plt.xlabel('Position in read (bp)', fontsize=5)
-    # make title in the report
-    # plt.title('Per base sequence quality', fontweight='bold', color='darkred', loc='left')
+    plt.xticks(xticks, xlabels, fontsize=17)
+    plt.yticks(fontsize=17)
+    plt.xlabel('Position in read (bp)', fontsize=20)
+    # make title in the report 'Per base sequence quality'
     plt.title('Quality scores across all bases (Sanger / Illumina 1.9 encoding)', size=12)
-    fig.savefig("{}/pictures/Per_base_quality.png".format(out))
+    fig.savefig(os.path.join(*out, 'pictures', 'Per_base_quality.png'))
 
 
 def per_sequence_GC_content(out):
@@ -114,18 +113,19 @@ def dup_plot_maker(counter, out):
     dedup_sum = sum(dedup_dict.values())
     if dup_sum and dedup_sum:
         fig, ax = plt.subplots()
-        ax.plot(dup_dict.keys(), [i*100 / dup_sum for i in dup_dict.values()],
-                dup_dict.keys(), [i*100 / dedup_sum for i in dedup_dict.values()])
+        ax.plot(dup_dict.keys(), [i*100 / dup_sum for i in dup_dict.values()], color='blue')
+        ax.plot(dup_dict.keys(), [i*100 / dedup_sum for i in dedup_dict.values()], color='red')
     else:
         fig, ax = plt.subplots()
-        ax.plot(dup_dict.keys(), [0 for _ in range(len(dup_dict.keys()))],
-                dup_dict.keys(), [0 for _ in range(len(dup_dict.keys()))])
+        ax.plot(dup_dict.keys(), [0 for _ in range(len(dup_dict.keys()))], color='blue')
+        ax.plot(dup_dict.keys(), [0 for _ in range(len(dup_dict.keys()))], color='red')
     ax.set_ylim(0, 100)
     for i in range(0, len(dup_dict.keys()) - 1, 2):
         plt.fill_between([i, i + 1], [100, 100], color="lightgrey")
+    plt.legend(('% Total sequences', '% Deduplicated sequences'), loc='upper right')
     percentage = round((1 - dup_sum/counter)*100, 2)
     plt.title('Percent of seqs remaining if deduplicated {}%'.format(percentage))
-    fig.savefig('{}/pictures/duplication_level.png'.format(out), figsize=(30, 10), dpi=200)
+    fig.savefig(os.path.join(*out, 'pictures', 'duplication_level.png'), figsize=(30, 10), dpi=200)
 
 
 def overrepresented_table(cnt, out):
@@ -135,12 +135,12 @@ def overrepresented_table(cnt, out):
     res_df = over_df.loc[over_df['Percentage'] > 0.0999999999]
     res_df.sort_values('Count', ascending=False, inplace=True, ignore_index=True)
     res_df.set_index('Sequence', inplace=True)
-    res_df.to_csv('{}/tables/overrepresented_sequences.tsv'.format(out), sep='\t')
+    res_df.to_csv(os.path.join(*out, 'tables', 'overrepresented_sequences.tsv'), sep='\t')
 
 
 def per_base_sequence_content(out):
     maximum = 100
-    figure = plt.figure()
+    plt.figure()
     plt.plot([i['A']*100/sum(i.values()) for i in stats.base_pos.values()],color='limegreen')
     plt.plot([i['C']*100/sum(i.values()) for i in stats.base_pos.values()],color='blue')
     plt.plot([i['G']*100/sum(i.values()) for i in stats.base_pos.values()],color='black')
@@ -164,7 +164,7 @@ def per_base_sequence_content(out):
                 else:
                     xlabels.append(str(i + 1) + ' - ' + str(i + 5))
                 count -= 1
-            elif 0 < count < 4:
+            elif 0 < count < 3:
                 count -= 1
             elif count == 0:
                 count = 4
@@ -174,4 +174,5 @@ def per_base_sequence_content(out):
     plt.legend(('% A','% C','% G','% T'),loc = 'upper right')
     plt.suptitle('Per base sequence content', fontweight='bold', color='darkred', horizontalalignment='right')
     plt.title('Sequence content across all bases', size = 4)
-    plt.savefig("{}/pictures/Per_base_sequence_content.png".format(out), figsize=(30, 10), dpi=200, facecolor = 'white')
+    plt.savefig(os.path.join(*out, 'pictures', 'Per_base_sequence_content.png'), figsize=(30, 10), dpi=200, facecolor = 'white')
+    plt.close()
