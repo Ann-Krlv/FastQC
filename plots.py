@@ -234,7 +234,7 @@ def per_sequence_quality_score_print(out):   # plotting
     p.set_xlabel("Mean Sequence Quality", fontsize=14)
     plt.savefig(os.path.join(*out, 'pictures', "Per_Sequence_Quality_Scores.png"))
     plt.close()
-   
+
 
 def per_tile_sequence_quality_plot(ord_arr, out):   # plotting
     data = np.flipud(ord_arr)
