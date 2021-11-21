@@ -4,6 +4,7 @@ import stats
 from Bio.SeqIO.QualityIO import FastqGeneralIterator  # will need to go to requirements
 import argparse
 import os
+import numpy as np
 
 counter = 0  # number of reads
 
@@ -39,6 +40,7 @@ def dir_maker(out):
         os.makedirs(os.path.join(*path, 'QCTerror_res', 'pictures'), exist_ok=True)
         os.makedirs(os.path.join(*path, 'QCTerror_res', 'tables'), exist_ok=True)
     return path + ['QCTerror_res']
+
 
 def amateur_reporter(out, file):
     """
@@ -89,4 +91,3 @@ if __name__ == '__main__':
     reader(fastq_file)  # now it works with single file only from the same directory
     amateur_reporter(out_dir, fastq_file)
     # per_title_sequence_quality_data(fastq_file, out_dir)
-

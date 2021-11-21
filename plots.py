@@ -199,7 +199,8 @@ def per_base_sequence_content(out):
     plt.legend(('% A', '% C', '% G', '% T'), loc='upper right')
     plt.suptitle('Per base sequence content', fontweight='bold', color='darkred', horizontalalignment='right')
     plt.title('Sequence content across all bases', size=4)
-    plt.savefig(os.path.join(*out, 'pictures', 'Per_base_sequence_content.png'), figsize=(30, 10), dpi=200, facecolor='white')
+    plt.savefig(os.path.join(*out, 'pictures', 'Per_base_sequence_content.png'),
+                figsize=(30, 10), dpi=200, facecolor='white')
     plt.close()
 
 
@@ -221,7 +222,8 @@ def reads_length_distribution(out):
     plt.legend(labels=['Sequence length'], loc='upper right')
     plt.title('Distribution of sequence length over all sequences', fontsize=17)
     plt.xlabel('Sequence length base pare', fontsize=15)
-    plt.savefig(os.path.join(*out, 'pictures', 'Sequence_length_distribution.png'), figsize=(30, 10), dpi=200, facecolor='white')
+    plt.savefig(os.path.join(*out, 'pictures', 'Sequence_length_distribution.png'),
+                figsize=(30, 10), dpi=200, facecolor='white')
     plt.close()
 
 
@@ -229,7 +231,7 @@ def per_sequence_quality_score_print(out):   # plotting
     sns.set_style("darkgrid")
     qual_score = np.array(stats.mean_qual_score, dtype='int')
     scores, ditrib = np.unique(qual_score, return_counts=True)
-    p = sns.lineplot(x =scores, y=ditrib, color="red")
+    p = sns.lineplot(x=scores, y=ditrib, color="red")
     p.set_title("Quality score distribution over all sequences", fontsize=14)
     p.set_xlabel("Mean Sequence Quality", fontsize=14)
     plt.savefig(os.path.join(*out, 'pictures', "Per_Sequence_Quality_Scores.png"))
