@@ -64,11 +64,28 @@ def start_parsing():
     return parser.parse_args()
 
 
+def per_title_sequence_quality_data(fastq_file, out):   # data preparation
+    x = open(fastq_file, 'r')  # read file
+    all_fastq = x.readlines()
+    x.close
+    max_len = len(max(all_fastq, key=len))
+    num_str = sum(1 for _ in all_fastq)
+    num_reads = int(num_str / 4)
+    ord_arr = np.zeros((num_reads, max_len))
+    for i in range(1, num_str + 1, 4):  # for every quality string
+        quality = all_fastq[i + 2]
+        len_quality = len(quality)
+        nread = int((i+3)/4)
+        for j in range(len_quality):  # quality count
+            ord_arr[nread-1][j] = ord(quality[j]) - 33
+    plots.per_tile_sequence_quality_plot(ord_arr, out)
+
+
 if __name__ == '__main__':
     args = start_parsing()
     fastq_file = args.input  # path to input file
     out_dir = args.output  # string means path to output directory
     reader(fastq_file)  # now it works with single file only from the same directory
     amateur_reporter(out_dir)
-
     print('There are', counter, 'reads in the file')
+    # per_title_sequence_quality_data(fastq_file, out_dir)
