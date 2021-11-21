@@ -26,8 +26,6 @@ timestr = time.strftime("%Y.%m.%d %H:%M:%S")
 # stat = list(records)
 
 
-
-
 class PDF(FPDF):
     def header(self):
         # Rendering logo:
