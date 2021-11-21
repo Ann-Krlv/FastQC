@@ -38,7 +38,7 @@ def dir_maker(out):
         os.makedirs(os.path.join(*path, 'QCTerror_res', 'tables'), exist_ok=True)
     return path + ['QCTerror_res']
 
-def report_maker(out):
+def report_maker(out, file):
     """
     each plot need to be save in 'out' directory, so, it must be in all plots.funs
     """
@@ -49,6 +49,7 @@ def report_maker(out):
     plots.dup_plot_maker(counter, out)
     plots.per_base_sequence_content(out)
     plots.reads_length_distribution(out)
+    plots.basic_statistics(file, counter, out)
     # add other functions from plots.py here (which create plots, tables for pdf, etc)
 
 
@@ -64,5 +65,5 @@ if __name__ == '__main__':
     fastq_file = args.input  # path to input file
     out_dir = args.output  # string means path to output directory
     reader(fastq_file)  # now it works with single file only from the same directory
-    report_maker(out_dir)
+    report_maker(out_dir, fastq_file)
     print('There are', counter, 'reads in the file')

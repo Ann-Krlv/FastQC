@@ -8,7 +8,8 @@ seq_set = pygtrie.Trie()  # Trie structure for overrepresented and duplicated se
 over_seq = {}  # dict for non-unique sequences
 unique_Overrepr_counter = 0
 base_pos = {}  # {position1(int): {'A':,'C':,'G':,'T':}, ...}
-read_length = {}
+read_length = {}  # {length1: number of reads, length2: number of reads, ...}
+poor_counter = 0
 
 
 def quality_per_read(quality, n):

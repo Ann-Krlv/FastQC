@@ -4,11 +4,21 @@ import stats
 import pandas as pd
 import numpy as np
 import os
+from scipy import stats
+
 pd.options.mode.chained_assignment = None  # default='warn'
+min_len = 0
+max_len = 0
 
 
-def basic_statistics(out):
-    pass
+def basic_statistics(file, n, out):
+    base_df = pd.DataFrame({'Measure': ['Filename', 'Encoding',
+                                        'Total sequences', 'Sequences flagged as poor quality',
+                                        'Sequence length', '%GC'],
+                            'Value': [file.split('/')[-1], 'Now it work as Sanger/Illumina 1.9 only',
+                                      n, stats.poor_counter,
+                                      '{} - {}'.format(min_len, max_len), 0]})
+    base_df.to_csv(os.path.join(*out, 'tables', 'basic_statistics.tsv'), sep='\t')
 
 
 def per_base_sequence_quality(out):
@@ -63,10 +73,13 @@ def per_base_sequence_quality(out):
     fig.savefig(os.path.join(*out, 'pictures', 'Per_base_quality.png'))
     plt.close()
 
+
 def per_sequence_gc_content(out):
-    gc_content = pd.DataFrame(stats.gc_content, columns=['GC content'])
-    #gc_content.plot(kind='density')
-    #plt.close()
+    # gc_content = pd.DataFrame(stats.gc_content, columns=['GC content'])
+    plt.figure()
+    sns.kdeplot(stats.gc_content, bw=0.5, color='darkred')
+    plt.savefig(os.path.join(*out, 'pictures', 'GC_content.png'))
+    plt.close()
 
 
 def dicts_for_duplicated_reads():
@@ -128,6 +141,7 @@ def dup_plot_maker(counter, out):
     fig.savefig(os.path.join(*out, 'pictures', 'duplication_level.png'), figsize=(30, 10), dpi=200)
     plt.close()
 
+
 def overrepresented_table(cnt, out):
     over_df = pd.DataFrame({'Sequence': stats.over_seq.keys(),
                             'Count': stats.over_seq.values(),
@@ -179,16 +193,20 @@ def per_base_sequence_content(out):
 
 
 def reads_length_distribution(out):
-    stats.read_length[max(stats.read_length.keys()) + 1] = 0
-    stats.read_length[min(stats.read_length.keys()) - 1] = 0
+    global max_len
+    global min_len
+    max_len = max(stats.read_length.keys())
+    min_len = min(stats.read_length.keys())
+    stats.read_length[max_len + 1] = 0
+    stats.read_length[min_len - 1] = 0
     plt.figure()
     maximum = max(stats.read_length.values())
     # sns.kdeplot(stats.read_length, bw=0.5, color='darkred')
     sns.lineplot(data=stats.read_length, legend=False, color='darkred')
-    for i in range(min(stats.read_length.keys())-1, max(stats.read_length.keys())+1):
+    for i in range(min_len - 1, max_len + 1):
         if i % 2 == 0:
             plt.fill_between([i-0.5, i+0.5], [maximum, maximum], color='lightgrey')
-    plt.xlim(min(stats.read_length.keys())-1, max(stats.read_length.keys())+1)
+    plt.xlim(min_len - 1, max_len + 1)
     plt.legend(labels=['Sequence length'], loc='upper right')
     plt.title('Distribution of sequence length over all sequences', fontsize=17)
     plt.xlabel('Sequence length base pare', fontsize=15)
