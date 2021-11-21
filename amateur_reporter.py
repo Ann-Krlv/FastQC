@@ -9,6 +9,7 @@ timestr_file = time.strftime("%Y-%m-%d__%H-%M-%S")
 timestr = time.strftime("%Y.%m.%d %H:%M:%S")
 
 global out
+out = out
 
 # data = pd.read_csv(os.path.join('QCTerror_res', 'tables', 'overrepresented_sequences1.tsv'), sep="\t")
 # df = DataFrame(data)
