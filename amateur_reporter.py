@@ -4,7 +4,6 @@ import time
 # import pandas as pd
 # from pandas import DataFrame
 import os
-import main
 
 timestr_file = time.strftime("%Y-%m-%d__%H-%M-%S")
 timestr = time.strftime("%Y.%m.%d %H:%M:%S")
