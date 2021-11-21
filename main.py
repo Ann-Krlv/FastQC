@@ -5,7 +5,7 @@ from Bio.SeqIO.QualityIO import FastqGeneralIterator  # will need to go to requi
 import argparse
 import os
 import numpy as np
-
+out_dir = '.'
 counter = 0  # number of reads
 
 
@@ -52,11 +52,10 @@ def amateur_reporter(out, file):
     plots.overrepresented_table(counter, out)
     plots.dup_plot_maker(counter, out)
     plots.per_base_sequence_content(out)
-
     plots.per_sequence_quality_score_print(out)
     plots.reads_length_distribution(out)
     plots.basic_statistics(file, counter, out)
-
+    exec(open("./amateur_reporter.py").read(), {'out': out})
     # add other functions from plots.py here (which create plots, tables for pdf, etc)
 
 
@@ -90,4 +89,6 @@ if __name__ == '__main__':
     out_dir = args.output  # string means path to output directory
     reader(fastq_file)  # now it works with single file only from the same directory
     amateur_reporter(out_dir, fastq_file)
+
+
     # per_title_sequence_quality_data(fastq_file, out_dir)

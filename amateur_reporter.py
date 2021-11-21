@@ -4,11 +4,13 @@ import time
 # import pandas as pd
 # from pandas import DataFrame
 import os
+import main
 
 timestr_file = time.strftime("%Y-%m-%d__%H-%M-%S")
 timestr = time.strftime("%Y.%m.%d %H:%M:%S")
 
 # *out,
+
 
 # data = pd.read_csv(os.path.join('QCTerror_res', 'tables', 'overrepresented_sequences1.tsv'), sep="\t")
 # df = DataFrame(data)
@@ -80,7 +82,7 @@ pdf.alias_nb_pages()
 # 2
 pdf.add_page()
 pdf.set_font("Courier", size=20)
-pdf.image("./QCTerror_res/pictures/Per_base_quality.png", w=pdf.epw)
+pdf.image(os.path.join(*out, 'pictures', 'Per_base_quality.png'), w=200)
 pdf.cell(0, 10, "Per base quality", 1, 1, align='C')
 
 # 3
@@ -90,21 +92,21 @@ pdf.cell(0, 10, "Per base quality", 1, 1, align='C')
 # pdf.cell(0, 10, "Per tile sequence quality", 0, 1)
 
 # 4
-# pdf.add_page()
-# pdf.set_font("Courier", size=12)
-# pdf.image("./QCTerror_res/pictures/Per_sequence_quality_scores.png", w=pdf.epw)
-# pdf.cell(0, 10, "Per sequence quality scores", 0, 1)
+pdf.add_page()
+pdf.set_font("Courier", size=12)
+pdf.image(os.path.join(*out, 'pictures', 'Per_Sequence_Quality_Scores.png'), w=200)
+pdf.cell(0, 10, "Per sequence quality scores", 0, 1)
 
 # 5
 pdf.add_page()
 pdf.set_font("Courier", size=20)
-pdf.image("./QCTerror_res/pictures/Per_base_sequence_content.png", w=pdf.epw)
+pdf.image(os.path.join(*out, 'pictures', "Per_base_sequence_content.png"), w=200)
 pdf.cell(0, 10, "Per base sequence content", 1, 1, align='C')
 
 # 6
 pdf.add_page()
 pdf.set_font("Courier", size=20)
-pdf.image("./QCTerror_res/pictures/GC_content.png", w=pdf.epw)
+pdf.image(os.path.join(*out, 'pictures', 'GC_content.png'), w=200)
 pdf.cell(0, 10, "GC content", 1, 1, align='C')
 
 # 7
@@ -116,13 +118,13 @@ pdf.cell(0, 10, "GC content", 1, 1, align='C')
 # 8
 pdf.add_page()
 pdf.set_font("Courier", size=20)
-pdf.image("./QCTerror_res/pictures/Sequence_length_distribution.png", w=pdf.epw)
+pdf.image(os.path.join(*out, 'pictures', 'Sequence_length_distribution.png'), w=200)
 pdf.cell(0, 10, "Sequence length distribution", 1, 1, align='C')
 
 # 9
 pdf.add_page()
 pdf.set_font("Courier", size=20)
-pdf.image("./QCTerror_res/pictures/duplication_level.png", w=pdf.epw)
+pdf.image(os.path.join(*out, 'pictures', 'duplication_level.png'), w=200)
 pdf.cell(0, 10, "duplication level", 1, 1, align='C')
 
 # 10
@@ -137,4 +139,4 @@ pdf.cell(0, 10, "duplication level", 1, 1, align='C')
 
 # *out,pdf.font_size max_line_height=1
 
-pdf.output(os.path.join('QCTerror_res', 'reports', 'amateur_final_report_{}.pdf'.format(timestr_file)))
+pdf.output(os.path.join(*out, 'reports', 'amateur_final_report_{}.pdf'.format(timestr_file)))
