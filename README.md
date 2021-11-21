@@ -27,7 +27,7 @@ https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541. This data wa
 
 To see example of output you can type:
 ![Per_base_quality](https://user-images.githubusercontent.com/71066938/142629950-218feffc-acd1-452e-ac2b-f4b274bb44af.png)
-# __! On this webpage you can find how to add images on github__ https://reactgo.com/github-add-images-readme/
+
 
 You can see the example of  created report *example.report* via
 
