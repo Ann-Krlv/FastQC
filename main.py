@@ -1,6 +1,6 @@
 import plots
 import stats
-import amateur_reporter
+# import amateur_reporter
 from Bio.SeqIO.QualityIO import FastqGeneralIterator  # will need to go to requirements
 import argparse
 import os
@@ -18,8 +18,7 @@ def reader(fastq):
             stats.gc_counter(seq, n)
             stats.duplicate_counter(seq, n)
             stats.base_content(seq, n)
-
-	    stats.quality_per_read(qual, n)
+            stats.quality_per_read(qual, n)
             stats.length_of_reads(n)
 
             # put other functions from stat.py here
@@ -42,7 +41,7 @@ def dir_maker(out):
         os.makedirs(os.path.join(*path, 'QCTerror_res', 'tables'), exist_ok=True)
     return path + ['QCTerror_res']
 
-def amateur_reporter(out):
+def amateur_reporter(out, file):
     """
     each plot need to be save in 'out' directory, so, it must be in all plots.funs
     """
@@ -72,6 +71,4 @@ if __name__ == '__main__':
     fastq_file = args.input  # path to input file
     out_dir = args.output  # string means path to output directory
     reader(fastq_file)  # now it works with single file only from the same directory
-    amateur_reporter(out_dir)
-
-    print('There are', counter, 'reads in the file')
+    amateur_reporter(out_dir, fastq_file)

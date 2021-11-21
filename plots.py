@@ -227,9 +227,9 @@ def reads_length_distribution(out):
 
 def per_sequence_quality_score_print(out):   # plotting
     sns.set_style("darkgrid")
-    qual_ditrib = [stats.mean_qual_score.count(i) for i in stats.mean_qual_score]
-    print(qual_ditrib)
-    p = sns.lineplot(x=stats.mean_qual_score, y=qual_ditrib, color="red")
+    qual_score = np.array(stats.mean_qual_score, dtype='int')
+    scores, ditrib = np.unique(qual_score, return_counts=True)
+    p = sns.lineplot(x =scores, y=ditrib, color="red")
     p.set_title("Quality score distribution over all sequences", fontsize=14)
     p.set_xlabel("Mean Sequence Quality", fontsize=14)
     plt.savefig(os.path.join(*out, 'pictures', "Per_Sequence_Quality_Scores.png"))
