@@ -1,6 +1,6 @@
 from fpdf import FPDF
 from datetime import datetime, timedelta
-import os
+
 
 # 2
 # Basic Statistics
@@ -15,6 +15,8 @@ import os
 # Overrepresented sequences
 # Adapter Content
 
+time = datetime.today()
+
 class PDF(FPDF):
     def header(self):
         # Rendering logo:
@@ -25,6 +27,9 @@ class PDF(FPDF):
         self.cell(80)
         # Printing title:
         self.cell(30, 10, "QC report", 1, 0, "C")
+        self.set_font("helvetica", "U", 7)
+        self.cell(80)
+        self.write(3, f'{time}')
         # Performing a line break:
         self.ln(20)
 
@@ -45,18 +50,18 @@ pdf.alias_nb_pages()
 pdf.add_page()
 pdf.set_font("Times", size=12)
 pdf.image("./pictures/Per_base_quality.png", w=pdf.epw)
-pdf.cell(0, 10, f"Raw statistic for your fasta file {i}", 0, 1)
+pdf.cell(0, 10, f"Raw statistic for your fasta file ", 0, 1)
 
 # 2
 pdf.add_page()
 pdf.set_font("Times", size=12)
 pdf.image("./pictures/duplication_level.png", w=pdf.epw)
-pdf.cell(0, 10, f"Raw statistic for your fasta file {i}", 0, 1)
+pdf.cell(0, 10, f"Raw statistic for your fasta file ", 0, 1)
 
 # 3
 pdf.add_page()
 pdf.set_font("Times", size=12)
-pdf.image("./pictures/duplication_level.png", w=pdf.epw)
-pdf.cell(0, 10, f"Raw statistic for your fasta file {i}", 0, 1)
+pdf.image("./pictures/CH-47_picks_up_troops_during_Operation_Abilene,_April_1966.jpg", w=pdf.epw)
+pdf.cell(0, 10, f"Raw statistic for your fasta file ", 0, 1)
 
 pdf.output("reports/amateur_final_report.pdf")
