@@ -65,8 +65,8 @@ def per_base_sequence_quality(out):
 
 def per_sequence_gc_content(out):
     gc_content = pd.DataFrame(stats.gc_content, columns=['GC content'])
-    gc_content.plot(kind='density')
-    plt.close()
+    #gc_content.plot(kind='density')
+    #plt.close()
 
 
 def dicts_for_duplicated_reads():
@@ -179,14 +179,18 @@ def per_base_sequence_content(out):
 
 
 def reads_length_distribution(out):
+    stats.read_length[max(stats.read_length.keys()) + 1] = 0
+    stats.read_length[min(stats.read_length.keys()) - 1] = 0
     plt.figure()
-    maximum = max(stats.read_length, key=stats.read_length.count)
-    sns.kdeplot(stats.read_length, bw=0.5, color='darkred')
-    for i in range(min(stats.read_length), max(stats.read_length)):
-        if i//2 == 0:
-            plt.fill_between([i, i+1], [maximum, maximum], color='lightgrey')
+    maximum = max(stats.read_length.values())
+    # sns.kdeplot(stats.read_length, bw=0.5, color='darkred')
+    sns.lineplot(data=stats.read_length, legend=False, color='darkred')
+    for i in range(min(stats.read_length.keys())-1, max(stats.read_length.keys())+1):
+        if i % 2 == 0:
+            plt.fill_between([i-0.5, i+0.5], [maximum, maximum], color='lightgrey')
+    plt.xlim(min(stats.read_length.keys())-1, max(stats.read_length.keys())+1)
     plt.legend(labels=['Sequence length'], loc='upper right')
     plt.title('Distribution of sequence length over all sequences', fontsize=17)
     plt.xlabel('Sequence length base pare', fontsize=15)
-    plt.savefig(os.path.join(*out, 'pictures', "Sequence_length_distribution.png"), figsize=(30, 10), dpi=200, facecolor='white')
+    plt.savefig(os.path.join(*out, 'pictures', 'Sequence_length_distribution.png'), figsize=(30, 10), dpi=200, facecolor='white')
     plt.close()
