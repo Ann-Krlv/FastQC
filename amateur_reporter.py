@@ -1,16 +1,29 @@
+import csv
 from fpdf import FPDF
 import time
 import pandas as pd
 from pandas import DataFrame
+import os
 
 timestr_file = time.strftime("%Y-%m-%d__%H-%M-%S")
 timestr = time.strftime("%Y.%m.%d %H:%M:%S")
 
-data = pd.read_csv("./QCTerror_res/tables/overrepresented_sequences.tsv", sep="\t")
-df = DataFrame(data)
-df1 = df.astype(str)
-records = df1.to_records(index=False)
-result = list(records)
+# *out,
+
+# data = pd.read_csv(os.path.join('QCTerror_res', 'tables', 'overrepresented_sequences1.tsv'), sep="\t")
+# df = DataFrame(data)
+# df1 = df.astype(str)
+# records = df1.to_records(index=False)
+# longone = list(records)
+
+# with open(os.path.join('QCTerror_res', 'tables', 'basic_statistics.tsv')) as f:
+    # reader = csv.DictReader(f, delimiter='\t')
+
+# data1 = pd.read_csv(os.path.join('QCTerror_res', 'tables', 'basic_statistics.tsv'), sep="\t")
+# df2 = DataFrame(reader)
+# df2 = reader.astype(str)
+# records = df2.to_records(index=False)
+# stat = list(records)
 
 # 2
 # Basic Statistics
@@ -29,7 +42,7 @@ result = list(records)
 class PDF(FPDF):
     def header(self):
         # Rendering logo:
-        self.image("./QCTerror_logo.png", 10, 8, 33)
+        self.image(os.path.join("QCTerror_logo.png"), 10, 8, 33)
         # Setting font: helvetica bold 15
         self.set_font("helvetica", "B", 15)
         # Moving cursor to the right:
@@ -37,7 +50,7 @@ class PDF(FPDF):
         # Printing title:
         self.cell(30, 10, "QC report", 1, 0, "C")
         self.set_font("helvetica", "U", 7)
-        self.cell(80)
+        self.cell(50)
         self.write(3, f'{timestr}')
         # Performing a line break:
         self.ln(20)
@@ -57,36 +70,54 @@ pdf.alias_nb_pages()
 
 # 1
 # pdf.add_page()
-# pdf.set_font("Times", size=12)
-# pdf.image("./QCTerror_res/pictures/Per_base_quality.png", w=pdf.epw)
-# pdf.cell(0, 10, f"Raw statistic for your fasta file ", 0, 1)
+# pdf.set_font("Times", size=7)
+# line_height = pdf.font_size * 2.5
+# col_width = pdf.epw / 4  # distribute content evenly
+# for row in stat:
+     #for datum in row:
+        # pdf.multi_cell(col_width, line_height, datum, border=1, ln=3, max_line_height=pdf.font_size)
+    # pdf.ln(line_height)
 
 # 2
-# pdf.add_page()
-# pdf.set_font("Times", size=12)
-# pdf.image("./QCTerror_res/pictures/duplication_level.png", w=pdf.epw)
-# pdf.cell(0, 10, f"Raw statistic for your fasta file ", 0, 1)
-
-# 3
-# pdf.add_page()
-# pdf.set_font("Times", size=12)
-# pdf.image("./QCTerror_res/pictures/Per_base_sequence_content.png", w=pdf.epw)
-# pdf.cell(0, 10, f"Raw statistic for your fasta file ", 0, 1)
-
-# 4
-# pdf.add_page()
-# pdf.set_font("Times", size=12)
-# pdf.image("./QCTerror_res/pictures/Sequence_length_distribution.png", w=pdf.epw)
-# pdf.cell(0, 10, f"Raw statistic for your fasta file ", 0, 1)
-
-# 0
 pdf.add_page()
-pdf.set_font("Times", size=7)
-line_height = pdf.font_size * 2.5
-col_width = pdf.epw / 2  # distribute content evenly
-for row in result:
-    for datum in row:
-        pdf.multi_cell(col_width, line_height, datum, border=1, ln=3, max_line_height=pdf.font_size)
-    pdf.ln(line_height)
+pdf.set_font("Times", size=12)
+pdf.image("./QCTerror_res/pictures/Per_base_quality.png", w=pdf.epw)
+pdf.cell(0, 10, "Per base quality", 0, 1)
 
-pdf.output(f"QCTerror_res/reports/amateur_final_report_" + timestr_file + ".pdf")
+# 5
+pdf.add_page()
+pdf.set_font("Times", size=12)
+pdf.image("./QCTerror_res/pictures/Per_base_sequence_content.png", w=pdf.epw)
+pdf.cell(0, 10, "Per base sequence content", 0, 1)
+
+# 6
+pdf.add_page()
+pdf.set_font("Times", size=12)
+pdf.image("./QCTerror_res/pictures/GC_content.png", w=pdf.epw)
+pdf.cell(0, 10, "GC content", 0, 1)
+
+# 8
+pdf.add_page()
+pdf.set_font("Times", size=12)
+pdf.image("./QCTerror_res/pictures/Sequence_length_distribution.png", w=pdf.epw)
+pdf.cell(0, 10, "Sequence length distribution", 0, 1)
+
+# 9
+pdf.add_page()
+pdf.set_font("Times", size=12)
+pdf.image("./QCTerror_res/pictures/duplication_level.png", w=pdf.epw)
+pdf.cell(0, 10, "duplication level", 0, 1)
+
+# 10
+# pdf.add_page()
+# pdf.set_font("Times", size=7)
+# line_height = pdf.font_size * 2.5
+# col_width = pdf.epw / 4  # distribute content evenly
+# for row in longone:
+    # for datum in row:
+        # pdf.cell(line_height, col_width, datum, border=1, ln=3)
+    # pdf.ln(line_height)
+
+# *out,pdf.font_size max_line_height=1
+
+pdf.output(os.path.join('QCTerror_res', 'reports', 'amateur_final_report_{}.pdf'.format(timestr_file)))
