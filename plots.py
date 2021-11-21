@@ -4,20 +4,21 @@ import stats
 import pandas as pd
 import numpy as np
 import os
-from scipy import stats
+import statistics as st
 
 pd.options.mode.chained_assignment = None  # default='warn'
 min_len = 0
 max_len = 0
+mean_gc = 0
 
 
 def basic_statistics(file, n, out):
     base_df = pd.DataFrame({'Measure': ['Filename', 'Encoding',
-                                        'Total sequences', 'Sequences flagged as poor quality',
+                                        'Total sequences',
                                         'Sequence length', '%GC'],
                             'Value': [file.split('/')[-1], 'Now it work as Sanger/Illumina 1.9 only',
-                                      n, stats.poor_counter,
-                                      '{} - {}'.format(min_len, max_len), 0]})
+                                      str(n),
+                                      '{} - {}'.format(min_len, max_len), str(round(mean_gc, 2))]})
     base_df.to_csv(os.path.join(*out, 'tables', 'basic_statistics.tsv'), sep='\t')
 
 
@@ -75,9 +76,19 @@ def per_base_sequence_quality(out):
 
 
 def per_sequence_gc_content(out):
-    # gc_content = pd.DataFrame(stats.gc_content, columns=['GC content'])
+    global mean_gc
+    cnt = len(stats.gc_content)
+    mean_gc = sum(stats.gc_content)/cnt
+    sd_gc = st.stdev(stats.gc_content)
+    x = np.random.normal(mean_gc, sd_gc, cnt)
     plt.figure()
-    sns.kdeplot(stats.gc_content, bw=0.5, color='darkred')
+    sns.kdeplot(stats.gc_content, bw=0.3, color='red')
+    sns.kdeplot(x, bw=0.5, color='blue')
+    plt.xlabel('Mean GC content (%)')
+    plt.legend(('GC count per read', 'Theoretical distribution'), loc='upper right')
+    plt.suptitle('Per sequence GC content', fontweight='bold', color='darkred', horizontalalignment='right')
+    plt.title('GC distribution over all sequences', size=4)
+
     plt.savefig(os.path.join(*out, 'pictures', 'GC_content.png'))
     plt.close()
 
