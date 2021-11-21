@@ -2,14 +2,12 @@ import pygtrie
 
 # global variables
 base_qsc = []  # base quality scores, perhaps it is better to use pandas dataframe
-read_qsc = []  # read quality scores, perhaps it is better to use pandas
 gc_content = []  # read GC composition
 seq_set = pygtrie.Trie()  # Trie structure for overrepresented and duplicated sequences (for check)
 over_seq = {}  # dict for non-unique sequences
 unique_Overrepr_counter = 0
 base_pos = {}  # {position1(int): {'A':,'C':,'G':,'T':}, ...}
-
-read_length = []
+read_length = {}
 mean_qual_score = []
 
 
