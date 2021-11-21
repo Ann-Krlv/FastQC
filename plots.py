@@ -61,12 +61,12 @@ def per_base_sequence_quality(out):
     # make title in the report 'Per base sequence quality'
     plt.title('Quality scores across all bases (Sanger / Illumina 1.9 encoding)', size=12)
     fig.savefig(os.path.join(*out, 'pictures', 'Per_base_quality.png'))
+    plt.close()
 
-
-def per_sequence_GC_content(out):
+def per_sequence_gc_content(out):
     gc_content = pd.DataFrame(stats.gc_content, columns=['GC content'])
     gc_content.plot(kind='density')
-    # plt.savefig("Per_sequence_GC_content.png", figsize=(30, 10), dpi=200)
+    plt.close()
 
 
 def dicts_for_duplicated_reads():
@@ -126,7 +126,7 @@ def dup_plot_maker(counter, out):
     percentage = round((1 - dup_sum/counter)*100, 2)
     plt.title('Percent of seqs remaining if deduplicated {}%'.format(percentage))
     fig.savefig(os.path.join(*out, 'pictures', 'duplication_level.png'), figsize=(30, 10), dpi=200)
-
+    plt.close()
 
 def overrepresented_table(cnt, out):
     over_df = pd.DataFrame({'Sequence': stats.over_seq.keys(),
@@ -141,10 +141,10 @@ def overrepresented_table(cnt, out):
 def per_base_sequence_content(out):
     maximum = 100
     plt.figure()
-    plt.plot([i['A']*100/sum(i.values()) for i in stats.base_pos.values()],color='limegreen')
-    plt.plot([i['C']*100/sum(i.values()) for i in stats.base_pos.values()],color='blue')
-    plt.plot([i['G']*100/sum(i.values()) for i in stats.base_pos.values()],color='black')
-    plt.plot([i['T']*100/sum(i.values()) for i in stats.base_pos.values()],color='red')
+    plt.plot([i['A']*100/sum(i.values()) for i in stats.base_pos.values()], color='limegreen')
+    plt.plot([i['C']*100/sum(i.values()) for i in stats.base_pos.values()], color='blue')
+    plt.plot([i['G']*100/sum(i.values()) for i in stats.base_pos.values()], color='black')
+    plt.plot([i['T']*100/sum(i.values()) for i in stats.base_pos.values()], color='red')
     for i in range(0, len(stats.base_pos.keys()) - 1, 2):
         plt.fill_between([i, i + 1], [maximum, maximum], color="lightgrey")
     xticks = []
@@ -152,12 +152,12 @@ def per_base_sequence_content(out):
     count = 4
     for i in range(0, len(stats.base_pos.keys()) - 1):
         if i + 1 <= 9:
-            j=i+0.5
+            j = i+0.5
             xticks.append(j)
             xlabels.append(str(i + 1))
         else:
             if count == 4:
-                j=i+0.5
+                j = i+0.5
                 xticks.append(j + 2)
                 if len(stats.base_pos.keys()) - i < 5:
                     xlabels.append(str(i + 1) + ' - ' + str(len(stats.base_pos.keys())))
@@ -169,10 +169,24 @@ def per_base_sequence_content(out):
             elif count == 0:
                 count = 4
     plt.xticks(xticks, xlabels, fontsize=5)
-    plt.yticks(np.arange(0,maximum,10),np.arange(0,maximum,10), fontsize=5)
+    plt.yticks(np.arange(0, maximum, 10), np.arange(0, maximum, 10), fontsize=5)
     plt.xlabel('Position in read (bp)', fontsize=5)
-    plt.legend(('% A','% C','% G','% T'),loc = 'upper right')
+    plt.legend(('% A', '% C', '% G', '% T'), loc='upper right')
     plt.suptitle('Per base sequence content', fontweight='bold', color='darkred', horizontalalignment='right')
     plt.title('Sequence content across all bases', size = 4)
     plt.savefig(os.path.join(*out, 'pictures', 'Per_base_sequence_content.png'), figsize=(30, 10), dpi=200, facecolor = 'white')
+    plt.close()
+
+
+def reads_length_distribution():
+    plt.figure()
+    maximum = max(stats.read_length, key=stats.read_length.count)
+    sns.kdeplot(stats.read_length, bw=0.5, color='darkred')
+    for i in range(min(stats.read_length), max(stats.read_length)):
+        if i//2 == 0:
+            plt.fill_between([i, i+1], [maximum, maximum], color='lightgrey')
+    plt.legend(labels=['Sequence length'], loc='upper right')
+    plt.title('Distribution of sequence length over all sequences', fontsize=17)
+    plt.xlabel('Sequence length base pare', fontsize=15)
+    plt.savefig("Sequence_length_distribution.png", figsize=(30, 10), dpi=200, facecolor='white')
     plt.close()
