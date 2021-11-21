@@ -25,8 +25,12 @@ To start working with QC-Terror tools please download our package to your comput
 You can do a test run on the data presented as a *example.fastq*.  The data was taken from  
 https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541. This data was additionally corrected: it consist out of first 60 reads, some of them are also shorterned for purposes to see difference in the plot regarding reads_length.
 
-### Usage
-To start the tool please type  main.py *file_name.fastq
+## Usage
+To run program type python main.py -i file.fastq (or use your python3 interpreter) in project directory
+If you want, you can specify output directory: python main.py -i file.fastq -o path/to/dir
+Program will count the number of reads, create folder QCTerror_res and exit
+All pictures and tables into QCTerror_res/pictures/ and QCTerror_res/tables/ folders
+Enjoy :)
 
 ## Authors and acknowledgements:
 * Anna Koroleva,https://github.com/Ann-Krlv    
