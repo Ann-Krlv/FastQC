@@ -1,5 +1,6 @@
 import plots
 import stats
+import amateur_reporter
 from Bio.SeqIO.QualityIO import FastqGeneralIterator  # will need to go to requirements
 import argparse
 import os
@@ -17,8 +18,10 @@ def reader(fastq):
             stats.gc_counter(seq, n)
             stats.duplicate_counter(seq, n)
             stats.base_content(seq, n)
+
 	    stats.quality_per_read(qual, n)
-            # stats.length_of_reads(n)
+           stats.length_of_reads(n)
+
             # put other functions from stat.py here
             # they need to work with single read
             # vars: title (use for 'per tile quality'), seq (nucleotides), qual (phred33 quality)
@@ -39,7 +42,7 @@ def dir_maker(out):
         os.makedirs(os.path.join(*path, 'QCTerror_res', 'tables'), exist_ok=True)
     return path + ['QCTerror_res']
 
-def report_maker(out):
+def amateur_reporter(out):
     """
     each plot need to be save in 'out' directory, so, it must be in all plots.funs
     """
@@ -49,8 +52,11 @@ def report_maker(out):
     plots.overrepresented_table(counter, out)
     plots.dup_plot_maker(counter, out)
     plots.per_base_sequence_content(out)
+
     plots.per_sequence_quality_score_print(out)
-    # plots.reads_length_distribution(out)
+    plots.reads_length_distribution(out)
+    plots.basic_statistics(file, counter, out)
+
     # add other functions from plots.py here (which create plots, tables for pdf, etc)
 
 
@@ -66,5 +72,6 @@ if __name__ == '__main__':
     fastq_file = args.input  # path to input file
     out_dir = args.output  # string means path to output directory
     reader(fastq_file)  # now it works with single file only from the same directory
-    report_maker(out_dir)
+    amateur_reporter(out_dir)
+
     print('There are', counter, 'reads in the file')

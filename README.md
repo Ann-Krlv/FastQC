@@ -54,10 +54,10 @@ You can see the example of  created report *example.report* via
 * Per sequence GC content
   * create plot in plots - __V__ stuck
 * Per base N content - *__maybe we can skip it?__*
-* Sequence length distribution: __V__
+* Sequence length distribution: __DONE V__
   * in start create counting
   * in plots build plot
-*Sequence duplication levels __STARTED A__
+*Sequence duplication levels __DONE A__
   * function in stats (use overrepresented stats)
   * plot
 * Overrepresented sequences - __DONE A__
@@ -68,31 +68,23 @@ You can see the example of  created report *example.report* via
 * Check and clean and add in README.md
 * flake8 __DONE V__
 * __Leonid__ don't forget to add your github page
-1. recognition fastQ format, read file
-2. transforme the quality symbols into numbers by position according to the ASCII table
-3. make graphs and tables according to ASCII quality data
-4. basic statistics (length, GC, duplicates, overrepresented ....)
-5. parsing command line arguments
-6. instruction
-7. requrements.txt with required dependencies, OS and python versions on which the program was tested
-8. Markdown project report
-9. create a common repository
-10. checkout for PEP8 in github actions
+* argparse __DONE A__
 
 Data were taken from https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541
+We also create example short file with 60 reads 'example_data.fastq' based on the library above
 
 ### Usage
-0. General notes: now you can get the number of reads and ugly plot only
-1. To run program type `python main.py` (or use your python3 interpreter) in project directory
-2. When program ask you, print fastq file name (or path to file)
-3. Program will count the number of reads, create Per_base_quality.png file with plot and exit
-4. Enjoy :)
+1. To run program type `python main.py -i file.fastq` (or use your python3 interpreter) in project directory
+2. If you want, you can specify output directory: `python main.py -i file.fastq -o path/to/dir`
+3. Program will count the number of reads, create folder QCTerror_res and exit
+4. All pictures and tables into QCTerror_res/pictures/ and QCTerror_res/tables/ folders
+5. Enjoy :)
 
 
 ## Authors and acknowledgements:
 * Anna Koroleva,https://github.com/Ann-Krlv 
 * Valeria Ladygina, https://github.com/ValeriiaLadyhina 
-* Leonid Zhozhikov, 
+* Leonid Zhozhikov, https://github.com/LyonyaZhozhikov
 * Oxana Kolpakova, https://github.com/OxanaKolpakova 
 
 ## Feedback
