@@ -1,6 +1,6 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
-import numpy as np
+# import numpy as np
 import stats
 import pandas as pd
 import numpy as np
@@ -55,9 +55,9 @@ def per_base_sequence_quality():
 
     ax.set_ylim(0, 40)
     ax.set_xlim(-0.5, xticks[-1])
-    plt.xticks(xticks, xlabels, fontsize=7)
-    plt.yticks(fontsize=7)
-    plt.xlabel('Position in read (bp)', fontsize=7)
+    plt.xticks(xticks, xlabels, fontsize=5)
+    plt.yticks(fontsize=5)
+    plt.xlabel('Position in read (bp)', fontsize=5)
     # make title in the report
     # plt.title('Per base sequence quality', fontweight='bold', color='darkred', loc='left')
     plt.title('Quality scores across all bases (Sanger / Illumina 1.9 encoding)', size=12)
@@ -121,6 +121,8 @@ def dup_plot_maker(counter):
         ax.plot(dup_dict.keys(), [0 for _ in range(len(dup_dict.keys()))],
                 dup_dict.keys(), [0 for _ in range(len(dup_dict.keys()))])
     ax.set_ylim(0, 100)
+    for i in range(0, len(dup_dict.keys()) - 1, 2):
+        plt.fill_between([i, i + 1], [100, 100], color="lightgrey")
     percentage = round((1 - dup_sum/counter)*100, 2)
     plt.title('Percent of seqs remaining if deduplicated {}%'.format(percentage))
     fig.savefig('duplication_level.png', figsize=(30, 10), dpi=200)
@@ -137,19 +139,18 @@ def overrepresented_table(cnt):
 
 
 def per_base_sequence_content():
-    maximum = max(max(stats.base_content_dict['A']),max(stats.base_content_dict['C']),max(stats.base_content_dict['G'])
-                  ,max(stats.base_content_dict['T']))
+    maximum = 100
     figure = plt.figure()
-    plt.plot(stats.base_content_dict['A'],color='limegreen')
-    plt.plot(stats.base_content_dict['C'],color='blue')
-    plt.plot(stats.base_content_dict['G'],color='black')
-    plt.plot(stats.base_content_dict['T'],color='red')
-    for i in range(0, len(stats.base_content_dict['A']) - 1, 2):
+    plt.plot([i['A']*100/sum(i.values()) for i in stats.base_pos.values()],color='limegreen')
+    plt.plot([i['C']*100/sum(i.values()) for i in stats.base_pos.values()],color='blue')
+    plt.plot([i['G']*100/sum(i.values()) for i in stats.base_pos.values()],color='black')
+    plt.plot([i['T']*100/sum(i.values()) for i in stats.base_pos.values()],color='red')
+    for i in range(0, len(stats.base_pos.keys()) - 1, 2):
         plt.fill_between([i, i + 1], [maximum, maximum], color="lightgrey")
     xticks = []
     xlabels = []
     count = 4
-    for i in range(0, len(stats.base_content_dict['A']) - 1):
+    for i in range(0, len(stats.base_pos.keys()) - 1):
         if i + 1 <= 9:
             j=i+0.5
             xticks.append(j)
@@ -158,8 +159,8 @@ def per_base_sequence_content():
             if count == 4:
                 j=i+0.5
                 xticks.append(j + 2)
-                if len(stats.base_content_dict['A']) - i < 5:
-                    xlabels.append(str(i + 1) + ' - ' + str(len(stats.base_content_dict['A'])))
+                if len(stats.base_pos.keys()) - i < 5:
+                    xlabels.append(str(i + 1) + ' - ' + str(len(stats.base_pos.keys())))
                 else:
                     xlabels.append(str(i + 1) + ' - ' + str(i + 5))
                 count -= 1
@@ -168,7 +169,7 @@ def per_base_sequence_content():
             elif count == 0:
                 count = 4
     plt.xticks(xticks, xlabels, fontsize=5)
-    plt.yticks(np.arange(0,maximum,10),np.arange(0,maximum,10),fontsize=5)
+    plt.yticks(np.arange(0,maximum,10),np.arange(0,maximum,10), fontsize=5)
     plt.xlabel('Position in read (bp)', fontsize=5)
     plt.legend(('% A','% C','% G','% T'),loc = 'upper right')
     plt.suptitle('Per base sequence content', fontweight='bold', color='darkred', horizontalalignment='right')
