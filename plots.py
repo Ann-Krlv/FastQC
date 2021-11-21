@@ -178,7 +178,7 @@ def per_base_sequence_content(out):
     plt.close()
 
 
-def reads_length_distribution():
+def reads_length_distribution(out):
     plt.figure()
     maximum = max(stats.read_length, key=stats.read_length.count)
     sns.kdeplot(stats.read_length, bw=0.5, color='darkred')
@@ -188,5 +188,5 @@ def reads_length_distribution():
     plt.legend(labels=['Sequence length'], loc='upper right')
     plt.title('Distribution of sequence length over all sequences', fontsize=17)
     plt.xlabel('Sequence length base pare', fontsize=15)
-    plt.savefig("Sequence_length_distribution.png", figsize=(30, 10), dpi=200, facecolor='white')
+    plt.savefig(os.path.join(*out, 'pictures', "Sequence_length_distribution.png"), figsize=(30, 10), dpi=200, facecolor='white')
     plt.close()
