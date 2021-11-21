@@ -9,11 +9,12 @@ over_seq = {}  # dict for non-unique sequences
 unique_Overrepr_counter = 0
 base_pos = {}  # {position1(int): {'A':,'C':,'G':,'T':}, ...}
 read_length = []
+mean_qual_score = []
 
 
 def quality_per_read(quality, n):
     sum_quality = sum([ord(i) - 33 for i in quality])
-    read_qsc.append(sum_quality/n)
+    mean_qual_score.append(int(sum_quality/n))
 
 
 def quality_per_base(quality, n):

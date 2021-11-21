@@ -17,6 +17,7 @@ def reader(fastq):
             stats.gc_counter(seq, n)
             stats.duplicate_counter(seq, n)
             stats.base_content(seq, n)
+	    stats.quality_per_read(qual, n)
             # stats.length_of_reads(n)
             # put other functions from stat.py here
             # they need to work with single read
@@ -48,6 +49,7 @@ def report_maker(out):
     plots.overrepresented_table(counter, out)
     plots.dup_plot_maker(counter, out)
     plots.per_base_sequence_content(out)
+    plots.per_sequence_quality_score_print(out)
     # plots.reads_length_distribution(out)
     # add other functions from plots.py here (which create plots, tables for pdf, etc)
 
