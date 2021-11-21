@@ -234,3 +234,14 @@ def per_sequence_quality_score_print(out):   # plotting
     p.set_xlabel("Mean Sequence Quality", fontsize=14)
     plt.savefig(os.path.join(*out, 'pictures', "Per_Sequence_Quality_Scores.png"))
     plt.close()
+   
+
+def per_tile_sequence_quality_plot(ord_arr, out):   # plotting
+    data = np.flipud(ord_arr)
+    average = np.average(ord_arr)
+    p = sns.heatmap(data, cmap="cool", center=average)
+    p.set_title("Quality per tile", fontsize=14)
+    p.set_xlabel("Position in read(bp)", fontsize=14)
+    p.invert_yaxis()
+    plt.savefig(os.path.join(*out, 'QCTerror_res', 'pictures', "Per_Tile_Sequence_Quality.png"))
+    plt.close()
