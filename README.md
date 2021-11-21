@@ -23,7 +23,7 @@ To start working with QC-Terror tools please download our package to your comput
 
 ## Example
 You can do a test run on the data presented as a *example.fastq*.  The data was taken from from 
-https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541
+https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541. This data was additionally corrected: it consist out of first 60 reads, some of them are also shorterned for purposes to see difference in the plot regarding reads_length.
 
 To see example of output you can type:
 ![Per_base_quality](https://user-images.githubusercontent.com/71066938/142629950-218feffc-acd1-452e-ac2b-f4b274bb44af.png)
@@ -32,43 +32,6 @@ To see example of output you can type:
 You can see the example of  created report *example.report* via
 
 
-## Сontribution of each project participant:
-
-*  Anna Koroleva,https://github.com/Ann-Krlv (...)
-*  Valeria Ladygina, https://github.com/ValeriiaLadyhina (...)
-*  Leonid Zhozhikov, (...)
-*  Oxana Kolpakova, https://github.com/OxanaKolpakova (...)
-
-## Things that needed to be done:
-* Basic statistics
-  * create table in plots. - I didn't find yet way gow to create colored table in python *(but we can save tsv tables!)*
-  * write function in stats. that would count how many reads did not path quality threshold (use from Fast filtrator)
-  * add to main.py input to change default value for index for quality filter
-* Per base sequence quality - __DONE A V__
-* Per tile sequence quality __O__
-* Per sequence quality scores __O__
-  * Create plot on plots
-* Per base sequence content __DONE V__
-  * in stats create function
-  * in plots create plot
-* Per sequence GC content
-  * create plot in plots - __V__ stuck
-* Per base N content - *__maybe we can skip it?__*
-* Sequence length distribution: __DONE V__
-  * in start create counting
-  * in plots build plot
-*Sequence duplication levels __DONE A__
-  * function in stats (use overrepresented stats)
-  * plot
-* Overrepresented sequences - __DONE A__
-  * plot table
-  * function in stats
-*Adapter content *__to be skipped maybe?__*
-* Combine everything into report
-* Check and clean and add in README.md
-* flake8 __DONE V__
-* __Leonid__ don't forget to add your github page
-* argparse __DONE A__
 
 Data were taken from https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541
 We also create example short file with 60 reads 'example_data.fastq' based on the library above
