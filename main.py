@@ -1,6 +1,8 @@
 import plots
 import stats
 from Bio.SeqIO.QualityIO import FastqGeneralIterator  # will need to go to requirements
+import argparse
+import os
 
 counter = 0  # number of reads
 
@@ -15,25 +17,52 @@ def reader(fastq):
             stats.gc_counter(seq, n)
             stats.duplicate_counter(seq, n)
             stats.base_content(seq, n)
-            stats.length_of_reads(n)
+            # stats.length_of_reads(n)
             # put other functions from stat.py here
             # they need to work with single read
             # vars: title (use for 'per tile quality'), seq (nucleotides), qual (phred33 quality)
             # n - length for certain read, "counter" count overall numbers of reads
 
 
-def report_maker():
-    plots.per_base_sequence_quality()
-    plots.per_sequence_gc_content()
-    plots.overrepresented_table(counter)
-    plots.dup_plot_maker(counter)
-    plots.per_base_sequence_content()
-    plots.reads_length_distribution()
+
+def dir_maker(out):
+    if '\\' in out:
+        path = out.split('\\')
+        os.makedirs(os.path.join(*path, 'QCTerror_res', 'reports'), exist_ok=True)
+        os.makedirs(os.path.join(*path, 'QCTerror_res', 'pictures'), exist_ok=True)
+        os.makedirs(os.path.join(*path, 'QCTerror_res', 'tables'), exist_ok=True)
+    else:
+        path = out.split('/')
+        os.makedirs(os.path.join(*path, 'QCTerror_res', 'reports'), exist_ok=True)
+        os.makedirs(os.path.join(*path, 'QCTerror_res', 'pictures'), exist_ok=True)
+        os.makedirs(os.path.join(*path, 'QCTerror_res', 'tables'), exist_ok=True)
+    return path + ['QCTerror_res']
+
+def report_maker(out):
+    """
+    each plot need to be save in 'out' directory, so, it must be in all plots.funs
+    """
+    out = dir_maker(out)
+    plots.per_base_sequence_quality(out)
+    plots.per_sequence_gc_content(out)
+    plots.overrepresented_table(counter, out)
+    plots.dup_plot_maker(counter, out)
+    plots.per_base_sequence_content(out)
+    # plots.reads_length_distribution(out)
     # add other functions from plots.py here (which create plots, tables for pdf, etc)
 
 
+def start_parsing():
+    parser = argparse.ArgumentParser(description='Read one fastq file and save some statistics about.')
+    parser.add_argument('--input', '-i', help='Input fastq file (in the current dir or path to its).')
+    parser.add_argument('--output', '-o', default='.', help='Choose existing output directory (default=".").')
+    return parser.parse_args()
+
+
 if __name__ == '__main__':
-    fastq_file = input('Please, type the nme of input file, \'short.fastq\' for example: \n')
+    args = start_parsing()
+    fastq_file = args.input  # path to input file
+    out_dir = args.output  # string means path to output directory
     reader(fastq_file)  # now it works with single file only from the same directory
-    report_maker()
+    report_maker(out_dir)
     print('There are', counter, 'reads in the file')

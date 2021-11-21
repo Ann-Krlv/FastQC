@@ -64,5 +64,5 @@ def base_content(seq, n):
             base_pos[i] = {'A': 0, 'G': 0, 'C': 0, 'T': 0}  # create new dict for position
 
 
-def length_of_reads(n):
-    read_length.append(n)
+#def length_of_reads(n):
+    #read_length.append(n)
