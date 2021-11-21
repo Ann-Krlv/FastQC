@@ -15,7 +15,6 @@ def reader(fastq):
             stats.gc_counter(seq, n)
             stats.duplicate_counter(seq, n)
             stats.base_content(seq, n)
-            stats.length_of_reads(n)
             # put other functions from stat.py here
             # they need to work with single read
             # vars: title (use for 'per tile quality'), seq (nucleotides), qual (phred33 quality)
@@ -24,19 +23,15 @@ def reader(fastq):
 
 def report_maker():
     plots.per_base_sequence_quality()
-    plots.per_sequence_gc_content()
+    plots.per_sequence_GC_content()
     plots.overrepresented_table(counter)
-    plots.per_base_sequence_content()
-    plots.reads_length_distribution()
     plots.dup_plot_maker(counter)
-
-    #plots.duplicated_reads()
+    plots.per_base_sequence_content()
     # add other functions from plots.py here (which create plots, tables for pdf, etc)
 
 
 if __name__ == '__main__':
-    fastq_file = input('Please, print name of input file, \'short.fastq\' for example: \n\n')
+    fastq_file = input('Please, input file, \'short.fastq\' for example: ')
     reader(fastq_file)  # now it works with single file only from the same directory
     report_maker()
     print('There are', counter, 'reads in the file')
-    print(stats.unique_Overrepr_counter)

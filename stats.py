@@ -2,14 +2,12 @@ import pygtrie
 
 # global variables
 base_qsc = []  # base quality scores, perhaps it is better to use pandas dataframe
-read_qsc = []   # read quality scores, perhaps it is better to use pandas
-gc_content = []   # read GC composition
-seq_set = pygtrie.Trie()   # Trie structure for overrepresented and duplicated sequences (for check)
-over_seq = {}   # dict for non-unique sequences
+read_qsc = []  # read quality scores, perhaps it is better to use pandas
+gc_content = []  # read GC composition
+seq_set = pygtrie.Trie()  # Trie structure for overrepresented and duplicated sequences (for check)
+over_seq = {}  # dict for non-unique sequences
 unique_Overrepr_counter = 0
-base_content_dict = {'A': [0], 'C': [0], 'G': [0], 'T': [0]}  # dictionary for base content
-read_length = []
-
+base_pos = {}  # {position1(int): {'A':,'C':,'G':,'T':}, ...}
 
 def quality_per_read(quality, n):
     sum_quality = sum([ord(i) - 33 for i in quality])
@@ -27,22 +25,6 @@ def quality_per_base(quality, n):
 
 def gc_counter(sequence, n):
     gc_content.append(((sequence.count('G')+sequence.count('C'))/n)*100)
-
-
-def quality_per_score():
-    pass
-
-
-def base_content(sequence, n):
-    for key, value in base_content_dict.items():
-        if key == 'A':
-            value.append((sequence.count('A')/n)*100)
-        elif key == 'C':
-            value.append((sequence.count('C')/n)*100)
-        elif key == 'G':
-            value.append((sequence.count('G')/n)*100)
-        else:
-            value.append((sequence.count('T')/n)*100)
 
 
 def duplicate_counter(sequence, n):
@@ -67,5 +49,14 @@ def duplicate_counter(sequence, n):
         unique_Overrepr_counter += 1
 
 
-def length_of_reads(n):
-    read_length.append(n)
+def quality_per_score():
+    pass
+
+
+def base_content(seq, n):
+    for i in range(n):
+        if i in base_pos:
+            if seq[i] in 'AGCT':  # there can be other letters in seq (I see 'N' for example)
+                base_pos[i][seq[i]] += 1
+        else:
+            base_pos[i] = {'A': 0, 'G': 0, 'C': 0, 'T': 0}  # create new dict for position

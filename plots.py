@@ -1,5 +1,6 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
+# import numpy as np
 import stats
 import pandas as pd
 import numpy as np
@@ -10,56 +11,21 @@ def basic_statistics():
     pass
 
 
-def per_sequence_gc_content():
-    gc_content = pd.DataFrame(stats.gc_content, columns=['GC content'])
-    gc_content.plot(kind='density')
-    # plt.savefig("Per_sequence_GC_content.png", figsize=(30, 10), dpi=200)
-
-
-'''
-now it creates pandas.Series with amount of each duplication level value
-you can draw plot from it but it will be differ with original in values (general shape will be same)
-def duplicated_reads():
-    tmp_df = pd.DataFrame({'Sequence': stats.over_seq.keys(),
-                           'count': stats.over_seq.values()})
-
-    dup_df = tmp_df['count'].value_counts()
-    dup_df.to_csv('duplicated_sequences.tsv', sep='\t')
-'''
-
-
-def overrepresented_table(cnt):
-    over_df = pd.DataFrame({'Sequence': stats.over_seq.keys(),
-                            'Count': stats.over_seq.values(),
-                            'Percentage': [i*100/cnt for i in stats.over_seq.values()]})
-    res_df = over_df.loc[over_df['Percentage'] > 0.0999999999]
-    res_df.sort_values('Count', ascending=False, inplace=True, ignore_index=True)
-    res_df.set_index('Sequence', inplace=True)
-    res_df.to_csv('overrepresented_sequences.tsv', sep='\t')
-
-
-def per_base_sequence_content():
-    plt.figure()
-    plt.plot(stats.base_content_dict['A'], color='limegreen')
-    plt.plot(stats.base_content_dict['C'], color='blue')
-    plt.plot(stats.base_content_dict['G'], color='black')
-    plt.plot(stats.base_content_dict['T'], color='red')
-    for i in range(0, len(stats.base_content_dict['A']) - 1, 2):
-        plt.fill_between([i, i + 1], [100, 100], color="lightgrey")
+def per_base_sequence_quality():
+    fig = plt.figure(1, figsize=(30, 15), dpi=200)
+    ax = fig.add_subplot(111)
     xticks = []
     xlabels = []
     count = 4
-    for i in range(0, len(stats.base_content_dict['A']) - 1):
+    for i in range(0, len(stats.base_qsc) - 1):
         if i + 1 <= 9:
-            j = i+0.5
-            xticks.append(j)
+            xticks.append(i)
             xlabels.append(str(i + 1))
         else:
             if count == 4:
-                j = i+0.5
-                xticks.append(j + 2)
-                if len(stats.base_content_dict['A']) - i < 5:
-                    xlabels.append(str(i + 1) + ' - ' + str(len(stats.base_content_dict['A'])))
+                xticks.append(i + 2)
+                if len(stats.base_qsc) - i < 5:
+                    xlabels.append(str(i + 1) + ' - ' + str(len(stats.base_qsc)))
                 else:
                     xlabels.append(str(i + 1) + ' - ' + str(i + 5))
                 count -= 1
@@ -67,44 +33,6 @@ def per_base_sequence_content():
                 count -= 1
             elif count == 0:
                 count = 4
-    plt.xticks(xticks, xlabels, fontsize=5)
-    plt.yticks(np.arange(0, 100, 10), np.arange(0, 100, 10), fontsize=5)
-    plt.ylim(0,100)
-    plt.xlabel('Position in read (bp)', fontsize=5)
-    plt.legend(('% A', '% C', '% G', '% T'), loc='upper right')
-    plt.suptitle('Per base sequence content', fontweight='bold', color='darkred', horizontalalignment='right')
-    plt.title('Sequence content across all bases', size=4)
-    plt.savefig("Per_base_sequence_content.png", figsize=(30, 10), dpi=200, facecolor='white')
-
-
-def reads_length_distribution():
-    plt.figure()
-    sns.kdeplot(stats.read_length, bw=0.5)
-    plt.savefig("Sequence_length_distribution.png", figsize=(30, 10), dpi=200, facecolor='white')
-
-
-def per_base_sequence_quality():
-    fig = plt.figure(1, figsize=(30, 15), dpi=200)
-    ax = fig.add_subplot(111)
-    xticks = []
-    xlabels = []
-    count = 3
-    for i in range(0, len(stats.base_qsc) - 1):
-        if i + 1 <= 9:
-            xticks.append(i)
-            xlabels.append(str(i + 1))
-        else:
-            if count == 3:
-                xticks.append(i + 1)
-                if len(stats.base_qsc) - i < 4:
-                    xlabels.append(str(i + 1) + ' - ' + str(len(stats.base_qsc)))
-                else:
-                    xlabels.append(str(i + 1) + ' - ' + str(i + 3))
-                count -= 1
-            elif 0 < count < 3:
-                count -= 1
-            elif count == 0:
-                count = 3
     sns.boxplot(data=stats.base_qsc,
                 saturation=0.75,
                 showfliers=False,
@@ -127,13 +55,19 @@ def per_base_sequence_quality():
 
     ax.set_ylim(0, 40)
     ax.set_xlim(-0.5, xticks[-1])
-    plt.xticks(xticks, xlabels, fontsize=17)
-    plt.yticks(fontsize=20)
-    plt.xlabel('Position in read (bp)', fontsize=20)
+    plt.xticks(xticks, xlabels, fontsize=5)
+    plt.yticks(fontsize=5)
+    plt.xlabel('Position in read (bp)', fontsize=5)
     # make title in the report
     # plt.title('Per base sequence quality', fontweight='bold', color='darkred', loc='left')
-    plt.title('Quality scores across all bases (Sanger / Illumina 1.9 encoding)', size=20)
+    plt.title('Quality scores across all bases (Sanger / Illumina 1.9 encoding)', size=12)
     fig.savefig("Per_base_quality.png")
+
+
+def per_sequence_GC_content():
+    gc_content = pd.DataFrame(stats.gc_content, columns=['GC content'])
+    gc_content.plot(kind='density')
+    # plt.savefig("Per_sequence_GC_content.png", figsize=(30, 10), dpi=200)
 
 
 def dicts_for_duplicated_reads():
@@ -187,6 +121,57 @@ def dup_plot_maker(counter):
         ax.plot(dup_dict.keys(), [0 for _ in range(len(dup_dict.keys()))],
                 dup_dict.keys(), [0 for _ in range(len(dup_dict.keys()))])
     ax.set_ylim(0, 100)
+    for i in range(0, len(dup_dict.keys()) - 1, 2):
+        plt.fill_between([i, i + 1], [100, 100], color="lightgrey")
     percentage = round((1 - dup_sum/counter)*100, 2)
     plt.title('Percent of seqs remaining if deduplicated {}%'.format(percentage))
     fig.savefig('duplication_level.png', figsize=(30, 10), dpi=200)
+
+
+def overrepresented_table(cnt):
+    over_df = pd.DataFrame({'Sequence': stats.over_seq.keys(),
+                            'Count': stats.over_seq.values(),
+                            'Percentage': [i*100/cnt for i in stats.over_seq.values()]})
+    res_df = over_df.loc[over_df['Percentage'] > 0.0999999999]
+    res_df.sort_values('Count', ascending=False, inplace=True, ignore_index=True)
+    res_df.set_index('Sequence', inplace=True)
+    res_df.to_csv('overrepresented_sequences.tsv', sep='\t')
+
+
+def per_base_sequence_content():
+    maximum = 100
+    figure = plt.figure()
+    plt.plot([i['A']*100/sum(i.values()) for i in stats.base_pos.values()],color='limegreen')
+    plt.plot([i['C']*100/sum(i.values()) for i in stats.base_pos.values()],color='blue')
+    plt.plot([i['G']*100/sum(i.values()) for i in stats.base_pos.values()],color='black')
+    plt.plot([i['T']*100/sum(i.values()) for i in stats.base_pos.values()],color='red')
+    for i in range(0, len(stats.base_pos.keys()) - 1, 2):
+        plt.fill_between([i, i + 1], [maximum, maximum], color="lightgrey")
+    xticks = []
+    xlabels = []
+    count = 4
+    for i in range(0, len(stats.base_pos.keys()) - 1):
+        if i + 1 <= 9:
+            j=i+0.5
+            xticks.append(j)
+            xlabels.append(str(i + 1))
+        else:
+            if count == 4:
+                j=i+0.5
+                xticks.append(j + 2)
+                if len(stats.base_pos.keys()) - i < 5:
+                    xlabels.append(str(i + 1) + ' - ' + str(len(stats.base_pos.keys())))
+                else:
+                    xlabels.append(str(i + 1) + ' - ' + str(i + 5))
+                count -= 1
+            elif 0 < count < 4:
+                count -= 1
+            elif count == 0:
+                count = 4
+    plt.xticks(xticks, xlabels, fontsize=5)
+    plt.yticks(np.arange(0,maximum,10),np.arange(0,maximum,10), fontsize=5)
+    plt.xlabel('Position in read (bp)', fontsize=5)
+    plt.legend(('% A','% C','% G','% T'),loc = 'upper right')
+    plt.suptitle('Per base sequence content', fontweight='bold', color='darkred', horizontalalignment='right')
+    plt.title('Sequence content across all bases', size = 4)
+    plt.savefig("Per_base_sequence_content.png", figsize=(30, 10), dpi=200, facecolor = 'white')
