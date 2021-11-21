@@ -16,38 +16,30 @@ information regarding:
   * distribution of average read quality score
   * per base sequence content
   * per sequence GC content
- 
-## Start
-To start working with QC-Terror tools please download our package to your computer. To run QC-TError tool please type 
-`python main.py` (or use your python3 interpreter) in project directory. 
 
 ## Example
-You can do a test run on the data presented as a *example.fastq*.  The data was taken from from 
+You can do a test run on the data presented as a *example.fastq*.  The data was taken from  
 https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541. This data was additionally corrected: it consist out of first 60 reads, some of them are also shorterned for purposes to see difference in the plot regarding reads_length.
 
-To see example of output you can type:
-![Per_base_quality](https://user-images.githubusercontent.com/71066938/142629950-218feffc-acd1-452e-ac2b-f4b274bb44af.png)
-# __! On this webpage you can find how to add images on github__ https://reactgo.com/github-add-images-readme/
-
-You can see the example of  created report *example.report* via
-
-
-
-Data were taken from https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541
-We also create example short file with 60 reads 'example_data.fastq' based on the library above
-
-### Usage
-
-
+## Usage
+To run program type python main.py -i file.fastq (or use your python3 interpreter) in project directory
+If you want, you can specify output directory: python main.py -i file.fastq -o path/to/dir
+Program will count the number of reads, create folder QCTerror_res and exit
+All pictures and tables into QCTerror_res/pictures/ and QCTerror_res/tables/ folders
+Enjoy :)
 
 ## Authors and acknowledgements:
 * Anna Koroleva,https://github.com/Ann-Krlv    
-* Valeria Ladygina, https://github.com/ValeriiaLadyhina 
+  * Contributed to quality_per_base, gc_counter, duplicate_counter,per_sequence_quality_score_print, testing - __IDEA DEVELOPER__
+* Valeria Ladygina, https://github.com/ValeriiaLadyhina
+  * Responsible for README.md, created Logo, contributed to quality_per_base ,gc_counter, base_content, read length, flake 8 - __PLOT BEAUTIMAKER__
 * Leonid Zhozhikov, https://github.com/LyonyaZhozhikov
+  * responsible for the part of the tool that creates report - __GOD of REPORTS__
 * Oxana Kolpakova, https://github.com/OxanaKolpakova 
+  * Contributed to per_sequence_quality_score_print, requirements, last fixes for flake 8, testing - __SUPER TESTER__
 
 ## Feedback
  If you have any questions, bug reports or complains please approach the authors of FastQ Filtrator via email:
 
- *__valeriia.ladyhina@gmail.com__* - responsible for
+ *__valeriia.ladyhina@gmail.com__* - responsible for communication with clients
  
