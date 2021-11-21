@@ -25,18 +25,7 @@ timestr = time.strftime("%Y.%m.%d %H:%M:%S")
 # records = df2.to_records(index=False)
 # stat = list(records)
 
-# 2
-# Basic Statistics
-# Per base sequence quality
-# Per tile sequence quality
-# Per sequence quality scores
-# Per base sequence content
-# Per sequence GC content
-# Per base N content
-# Sequence Length Distribution
-# Sequence Duplication Levels
-# Overrepresented sequences
-# Adapter Content
+
 
 
 class PDF(FPDF):
@@ -67,6 +56,18 @@ class PDF(FPDF):
 # Instantiation of inherited class
 pdf = PDF()
 pdf.alias_nb_pages()
+# 0
+# 1 Basic Statistics
+# 2 Per base sequence quality
+# 3 Per tile sequence quality
+# 4 Per sequence quality scores
+# 5 Per base sequence content
+# 6 Per sequence GC content
+# 7 Per base N content
+# 8 Sequence Length Distribution
+# 9 Sequence Duplication Levels
+# 10 Overrepresented sequences
+# 11 Adapter Content
 
 # 1
 # pdf.add_page()
@@ -80,37 +81,55 @@ pdf.alias_nb_pages()
 
 # 2
 pdf.add_page()
-pdf.set_font("Times", size=12)
+pdf.set_font("Courier", size=20)
 pdf.image("./QCTerror_res/pictures/Per_base_quality.png", w=pdf.epw)
-pdf.cell(0, 10, "Per base quality", 0, 1)
+pdf.cell(0, 10, "Per base quality", 1, 1, align='C')
+
+# 3
+# pdf.add_page()
+# pdf.set_font("Courier", size=12)
+# pdf.image("./QCTerror_res/pictures/Per_Tile_Sequence_Quality.png", w=pdf.epw)
+# pdf.cell(0, 10, "Per tile sequence quality", 0, 1)
+
+# 4
+# pdf.add_page()
+# pdf.set_font("Courier", size=12)
+# pdf.image("./QCTerror_res/pictures/Per_sequence_quality_scores.png", w=pdf.epw)
+# pdf.cell(0, 10, "Per sequence quality scores", 0, 1)
 
 # 5
 pdf.add_page()
-pdf.set_font("Times", size=12)
+pdf.set_font("Courier", size=20)
 pdf.image("./QCTerror_res/pictures/Per_base_sequence_content.png", w=pdf.epw)
-pdf.cell(0, 10, "Per base sequence content", 0, 1)
+pdf.cell(0, 10, "Per base sequence content", 1, 1, align='C')
 
 # 6
 pdf.add_page()
-pdf.set_font("Times", size=12)
+pdf.set_font("Courier", size=20)
 pdf.image("./QCTerror_res/pictures/GC_content.png", w=pdf.epw)
-pdf.cell(0, 10, "GC content", 0, 1)
+pdf.cell(0, 10, "GC content", 1, 1, align='C')
+
+# 7
+# pdf.add_page()
+# pdf.set_font("Courier", size=12)
+# pdf.image("./QCTerror_res/pictures/Per_base_N_content.png", w=pdf.epw)
+# pdf.cell(0, 10, "Per base N content", 0, 1)
 
 # 8
 pdf.add_page()
-pdf.set_font("Times", size=12)
+pdf.set_font("Courier", size=20)
 pdf.image("./QCTerror_res/pictures/Sequence_length_distribution.png", w=pdf.epw)
-pdf.cell(0, 10, "Sequence length distribution", 0, 1)
+pdf.cell(0, 10, "Sequence length distribution", 1, 1, align='C')
 
 # 9
 pdf.add_page()
-pdf.set_font("Times", size=12)
+pdf.set_font("Courier", size=20)
 pdf.image("./QCTerror_res/pictures/duplication_level.png", w=pdf.epw)
-pdf.cell(0, 10, "duplication level", 0, 1)
+pdf.cell(0, 10, "duplication level", 1, 1, align='C')
 
 # 10
 # pdf.add_page()
-# pdf.set_font("Times", size=7)
+# pdf.set_font("Courier", size=7)
 # line_height = pdf.font_size * 2.5
 # col_width = pdf.epw / 4  # distribute content evenly
 # for row in longone:
