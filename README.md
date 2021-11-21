@@ -37,15 +37,11 @@ Data were taken from https://figshare.com/articles/dataset/amp_res_2_fastq_zip/1
 We also create example short file with 60 reads 'example_data.fastq' based on the library above
 
 ### Usage
-1. To run program type `python main.py -i file.fastq` (or use your python3 interpreter) in project directory
-2. If you want, you can specify output directory: `python main.py -i file.fastq -o path/to/dir`
-3. Program will count the number of reads, create folder QCTerror_res and exit
-4. All pictures and tables into QCTerror_res/pictures/ and QCTerror_res/tables/ folders
-5. Enjoy :)
+
 
 
 ## Authors and acknowledgements:
-* Anna Koroleva,https://github.com/Ann-Krlv 
+* Anna Koroleva,https://github.com/Ann-Krlv    
 * Valeria Ladygina, https://github.com/ValeriiaLadyhina 
 * Leonid Zhozhikov, https://github.com/LyonyaZhozhikov
 * Oxana Kolpakova, https://github.com/OxanaKolpakova 
@@ -53,5 +49,5 @@ We also create example short file with 60 reads 'example_data.fastq' based on th
 ## Feedback
  If you have any questions, bug reports or complains please approach the authors of FastQ Filtrator via email:
 
- *__valeriia.ladyhina@gmail.com__* - responsible for...
+ *__valeriia.ladyhina@gmail.com__* - responsible for
  
