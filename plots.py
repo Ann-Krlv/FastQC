@@ -7,11 +7,11 @@ import numpy as np
 pd.options.mode.chained_assignment = None  # default='warn'
 
 
-def basic_statistics():
+def basic_statistics(out):
     pass
 
 
-def per_base_sequence_quality():
+def per_base_sequence_quality(out):
     fig = plt.figure(1, figsize=(30, 15), dpi=200)
     ax = fig.add_subplot(111)
     xticks = []
@@ -61,10 +61,10 @@ def per_base_sequence_quality():
     # make title in the report
     # plt.title('Per base sequence quality', fontweight='bold', color='darkred', loc='left')
     plt.title('Quality scores across all bases (Sanger / Illumina 1.9 encoding)', size=12)
-    fig.savefig("Per_base_quality.png")
+    fig.savefig("{}/pictures/Per_base_quality.png".format(out))
 
 
-def per_sequence_GC_content():
+def per_sequence_GC_content(out):
     gc_content = pd.DataFrame(stats.gc_content, columns=['GC content'])
     gc_content.plot(kind='density')
     # plt.savefig("Per_sequence_GC_content.png", figsize=(30, 10), dpi=200)
@@ -108,7 +108,7 @@ def dicts_for_duplicated_reads():
     return dup_dict, dedup_dict
 
 
-def dup_plot_maker(counter):
+def dup_plot_maker(counter, out):
     dup_dict, dedup_dict = dicts_for_duplicated_reads()
     dup_sum = sum(dup_dict.values())
     dedup_sum = sum(dedup_dict.values())
@@ -125,20 +125,20 @@ def dup_plot_maker(counter):
         plt.fill_between([i, i + 1], [100, 100], color="lightgrey")
     percentage = round((1 - dup_sum/counter)*100, 2)
     plt.title('Percent of seqs remaining if deduplicated {}%'.format(percentage))
-    fig.savefig('duplication_level.png', figsize=(30, 10), dpi=200)
+    fig.savefig('{}/pictures/duplication_level.png'.format(out), figsize=(30, 10), dpi=200)
 
 
-def overrepresented_table(cnt):
+def overrepresented_table(cnt, out):
     over_df = pd.DataFrame({'Sequence': stats.over_seq.keys(),
                             'Count': stats.over_seq.values(),
                             'Percentage': [i*100/cnt for i in stats.over_seq.values()]})
     res_df = over_df.loc[over_df['Percentage'] > 0.0999999999]
     res_df.sort_values('Count', ascending=False, inplace=True, ignore_index=True)
     res_df.set_index('Sequence', inplace=True)
-    res_df.to_csv('overrepresented_sequences.tsv', sep='\t')
+    res_df.to_csv('{}/tables/overrepresented_sequences.tsv'.format(out), sep='\t')
 
 
-def per_base_sequence_content():
+def per_base_sequence_content(out):
     maximum = 100
     figure = plt.figure()
     plt.plot([i['A']*100/sum(i.values()) for i in stats.base_pos.values()],color='limegreen')
@@ -174,4 +174,4 @@ def per_base_sequence_content():
     plt.legend(('% A','% C','% G','% T'),loc = 'upper right')
     plt.suptitle('Per base sequence content', fontweight='bold', color='darkred', horizontalalignment='right')
     plt.title('Sequence content across all bases', size = 4)
-    plt.savefig("Per_base_sequence_content.png", figsize=(30, 10), dpi=200, facecolor = 'white')
+    plt.savefig("{}/pictures/Per_base_sequence_content.png".format(out), figsize=(30, 10), dpi=200, facecolor = 'white')
