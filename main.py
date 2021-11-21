@@ -19,7 +19,7 @@ def reader(fastq):
             stats.duplicate_counter(seq, n)
             stats.base_content(seq, n)
 	    stats.quality_per_read(qual, n)
-            stats.length_of_reads(n)
+	    stats.length_of_reads(n)
             # put other functions from stat.py here
             # they need to work with single read
             # vars: title (use for 'per tile quality'), seq (nucleotides), qual (phred33 quality)
