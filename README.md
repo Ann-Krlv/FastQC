@@ -26,6 +26,8 @@ To run program type python main.py -i file.fastq (or use your python3 interprete
 If you want, you can specify output directory: python main.py -i file.fastq -o path/to/dir
 Program will count the number of reads, create folder QCTerror_res and exit
 All pictures and tables into QCTerror_res/pictures/ and QCTerror_res/tables/ folders
+The pdf report generation takes some time, so you can take a coffee break or just comment (#) last 
+string in amateur_maker() (in main.py)
 Enjoy :)
 
 ## Authors and acknowledgements:

@@ -89,6 +89,4 @@ if __name__ == '__main__':
     out_dir = args.output  # string means path to output directory
     reader(fastq_file)  # now it works with single file only from the same directory
     amateur_reporter(out_dir, fastq_file)
-
-
     # per_title_sequence_quality_data(fastq_file, out_dir)
