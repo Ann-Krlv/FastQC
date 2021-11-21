@@ -18,7 +18,6 @@ def reader(fastq):
             stats.gc_counter(seq, n)
             stats.duplicate_counter(seq, n)
             stats.base_content(seq, n)
-
 	    stats.quality_per_read(qual, n)
             stats.length_of_reads(n)
 
